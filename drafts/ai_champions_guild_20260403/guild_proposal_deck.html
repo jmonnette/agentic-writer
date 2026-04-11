@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPAM NA AI Champions Guild — Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green: #00B140;
+  --green-dark: #008f34;
+  --green-light: #e8f7ef;
+  --dark: #1C2B33;
+  --text: #2d3748;
+  --muted: #718096;
+  --border: #E2E8F0;
+  --bg-alt: #F7F9FC;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #111;
+}
+
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ── SLIDES ── */
+.slide {
+  position: absolute; inset: 0;
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  overflow: hidden;
+}
+.slide.active { display: flex; }
+
+/* ── HEADER STRIP (all slides except title/closing) ── */
+.slide-head {
+  padding: 32px 72px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.eyebrow {
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 6px;
+}
+.slide-head h2 {
+  font-size: 30px; font-weight: 800;
+  color: var(--dark); line-height: 1.2;
+}
+
+/* ── BODY ── */
+.slide-body {
+  flex: 1; padding: 28px 72px 24px;
+  display: flex; flex-direction: column;
+  justify-content: center; overflow: hidden;
+}
+
+/* ══════════════════════════════════════
+   SLIDE 1 — TITLE
+══════════════════════════════════════ */
+#s1 { background: var(--dark); flex-direction: column; }
+#s1 .top-accent { height: 6px; background: var(--green); flex-shrink: 0; }
+#s1 .title-body {
+  flex: 1; display: flex; align-items: center;
+  padding: 48px 72px;
+}
+#s1 .title-text { max-width: 680px; }
+#s1 .t-eye {
+  font-size: 11px; font-weight: 800;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 20px;
+}
+#s1 h1 {
+  font-size: 58px; font-weight: 900; line-height: 1.05;
+  color: #fff; margin-bottom: 20px;
+}
+#s1 h1 em { font-style: normal; color: var(--green); }
+#s1 .t-sub {
+  font-size: 20px; font-weight: 400; line-height: 1.55;
+  color: rgba(255,255,255,.6); margin-bottom: 44px;
+}
+#s1 .t-meta { font-size: 13px; color: rgba(255,255,255,.35); }
+#s1 .title-footer {
+  padding: 20px 72px;
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.epam-badge {
+  font-size: 20px; font-weight: 900;
+  letter-spacing: .04em; color: #fff;
+}
+.epam-badge em { font-style: normal; color: var(--green); }
+
+/* ══════════════════════════════════════
+   SLIDE 2 — OPPORTUNITY (stats grid)
+══════════════════════════════════════ */
+.stat-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-top: 4px solid var(--green);
+  border-radius: 10px; padding: 22px 20px;
+}
+.stat-n {
+  font-size: 52px; font-weight: 900;
+  color: var(--green); line-height: 1; margin-bottom: 6px;
+}
+.stat-l {
+  font-size: 13px; font-weight: 700;
+  color: var(--dark); margin-bottom: 5px;
+}
+.stat-s { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+.callout {
+  background: var(--green-light);
+  border-left: 4px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 20px;
+}
+.callout p { font-size: 14px; font-weight: 500; color: var(--dark); line-height: 1.55; }
+.callout strong { font-weight: 700; }
+
+/* ══════════════════════════════════════
+   SLIDE 3 — WHAT IT IS (not/is + bcg)
+══════════════════════════════════════ */
+.not-is-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-bottom: 20px;
+}
+.notbox, .isbox {
+  border-radius: 10px; padding: 18px 20px;
+}
+.notbox { background: #FFF5F5; border: 1px solid #FED7D7; }
+.notbox h4 { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #C53030; margin-bottom: 10px; }
+.notbox li { font-size: 13px; color: #742A2A; padding: 3px 0 3px 18px; position: relative; list-style: none; line-height: 1.4; }
+.notbox li::before { content: '✕'; position: absolute; left: 0; font-size: 10px; color: #C53030; }
+.isbox { background: var(--green-light); border: 1px solid rgba(0,177,64,.3); }
+.isbox h4 { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green-dark); margin-bottom: 10px; }
+.isbox li { font-size: 13px; color: #1a5c30; padding: 3px 0 3px 18px; position: relative; list-style: none; line-height: 1.4; }
+.isbox li::before { content: '✓'; position: absolute; left: 0; font-size: 11px; color: var(--green); font-weight: 700; }
+
+.scope-row { display: flex; gap: 16px; align-items: flex-start; }
+.scope-text {
+  flex: 1; font-size: 14px; color: var(--text); line-height: 1.7;
+}
+.scope-text strong { color: var(--dark); font-weight: 700; }
+.bcg-box {
+  width: 240px; background: var(--dark);
+  border-radius: 12px; padding: 20px 22px; flex-shrink: 0;
+}
+.bcg-eye { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+.bcg-n { font-size: 42px; font-weight: 900; color: var(--green); line-height: 1; margin-bottom: 6px; }
+.bcg-desc { font-size: 12px; color: rgba(255,255,255,.65); line-height: 1.5; }
+.bcg-desc strong { color: #fff; }
+
+/* ══════════════════════════════════════
+   SLIDE 4 — MEMBERSHIP TABLE
+══════════════════════════════════════ */
+.tier-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+.tier-table th {
+  background: var(--dark); color: #fff;
+  padding: 11px 16px; text-align: left;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.tier-table th:first-child { border-radius: 8px 0 0 0; }
+.tier-table th:last-child { border-radius: 0 8px 0 0; }
+.tier-table td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  color: var(--text); vertical-align: top; line-height: 1.5;
+}
+.tier-table tr:last-child td { border-bottom: none; }
+.tier-table tr:nth-child(even) td { background: var(--bg-alt); }
+.badge {
+  display: inline-block; padding: 3px 10px;
+  border-radius: 20px; font-size: 11px; font-weight: 700;
+  white-space: nowrap;
+}
+.badge-full { background: var(--green); color: #fff; }
+.badge-assoc { background: rgba(0,177,64,.15); color: var(--green-dark); }
+.badge-pipe { background: #EDF2F7; color: #4A5568; }
+.badge-count { font-size: 18px; font-weight: 900; color: var(--green); }
+
+.two-note { display: flex; gap: 14px; }
+.note-green { flex: 1; background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 8px 8px 0; padding: 14px 18px; }
+.note-amber { flex: 1; background: #FFFBEB; border-left: 4px solid #F6AD55; border-radius: 0 8px 8px 0; padding: 14px 18px; }
+.note-green p, .note-amber p { font-size: 13px; line-height: 1.55; }
+.note-green p { color: var(--dark); }
+.note-amber p { color: #744210; }
+.note-green strong { font-weight: 700; }
+.note-amber strong { font-weight: 700; }
+
+/* ══════════════════════════════════════
+   SLIDE 5 — ORG STRUCTURE
+══════════════════════════════════════ */
+.org-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.org-panel {
+  border-radius: 12px; padding: 22px 24px;
+}
+.org-guild { background: #fff; border: 2px solid var(--green); }
+.org-bu { background: var(--bg-alt); border: 1px solid var(--border); }
+.org-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.org-guild .org-label { color: var(--green); }
+.org-bu .org-label { color: var(--muted); }
+.org-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
+.org-list { list-style: none; }
+.org-list li {
+  font-size: 13px; color: var(--muted);
+  padding: 3px 0 3px 16px; position: relative; line-height: 1.45;
+}
+.org-list li::before { content: '›'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+.org-connector {
+  display: flex; justify-content: center;
+  align-items: center; gap: 8px;
+  padding: 6px 0; font-size: 12px; color: var(--green); font-weight: 700;
+}
+.org-connector::before, .org-connector::after {
+  content: ''; flex: 1; height: 1px; background: var(--green); opacity: .4;
+}
+
+.why-box {
+  background: var(--dark); border-radius: 12px; padding: 22px 24px; margin-top: 0;
+}
+.why-eye { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+.why-p { font-size: 13px; color: rgba(255,255,255,.7); line-height: 1.6; }
+.why-p strong { color: #fff; }
+
+/* ══════════════════════════════════════
+   SLIDE 6 — THREE JOBS
+══════════════════════════════════════ */
+.jobs-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+  margin-bottom: 16px;
+}
+.job-card {
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-top: 4px solid var(--green);
+  border-radius: 10px; padding: 22px 20px;
+  display: flex; flex-direction: column;
+}
+.job-n { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 7px; }
+.job-card h3 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 9px; line-height: 1.3; }
+.job-card p { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
+.job-card p strong { color: var(--dark); font-weight: 600; }
+.job-tag { margin-top: 14px; font-size: 11px; font-weight: 700; color: var(--green); }
+
+/* ══════════════════════════════════════
+   SLIDE 7 — WHY JOIN
+══════════════════════════════════════ */
+.benefits-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.benefit-card {
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px 22px;
+  display: flex; gap: 14px;
+}
+.b-icon {
+  width: 38px; height: 38px;
+  background: var(--green); border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.b-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+.b-title .note { font-size: 11px; font-weight: 400; color: var(--muted); }
+.b-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.b-desc strong { color: var(--dark); font-weight: 600; }
+
+/* ══════════════════════════════════════
+   SLIDE 8 — LAUNCH PHASES
+══════════════════════════════════════ */
+.phases-row {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  margin-bottom: 18px; position: relative;
+}
+.phases-row::after {
+  content: ''; position: absolute;
+  top: 27px; left: 12.5%; right: 12.5%;
+  height: 2px; background: var(--green); opacity: .4; z-index: 0;
+}
+.phase {
+  position: relative; z-index: 1;
+  padding: 0 10px; text-align: center;
+}
+.phase-dot {
+  width: 54px; height: 54px;
+  background: var(--dark); border: 3px solid var(--green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 13px; font-weight: 900; color: var(--green);
+}
+.phase-timing {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--green); margin-bottom: 5px;
+}
+.phase h3 { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.phase ul { list-style: none; text-align: left; }
+.phase ul li {
+  font-size: 11.5px; color: var(--muted);
+  padding: 3px 0 3px 13px; position: relative; line-height: 1.45;
+}
+.phase ul li::before { content: '›'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+.mvp-strip {
+  background: var(--dark); border-radius: 10px;
+  padding: 16px 24px;
+  display: flex; align-items: center; gap: 20px;
+}
+.mvp-tag {
+  font-size: 10px; font-weight: 900; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--green); white-space: nowrap;
+}
+.mvp-copy { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5; }
+.mvp-copy strong { color: #fff; }
+
+/* ══════════════════════════════════════
+   SLIDE 9 — THE ASK (dark)
+══════════════════════════════════════ */
+#s9 { background: var(--dark); }
+#s9 .slide-head { border-bottom: 1px solid rgba(255,255,255,.1); }
+#s9 .slide-head .eyebrow { color: var(--green); }
+#s9 .slide-head h2 { color: #fff; }
+
+.ask-list { display: flex; flex-direction: column; gap: 14px; }
+.ask-item {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px; padding: 18px 22px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.ask-num {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: var(--green); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: #fff;
+}
+.ask-h { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.ask-p { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.55; }
+
+/* ══════════════════════════════════════
+   SLIDE 10 — CLOSING (dark)
+══════════════════════════════════════ */
+#s10 {
+  background: var(--dark); flex-direction: column;
+}
+#s10 .close-accent { height: 6px; background: var(--green); flex-shrink: 0; }
+#s10 .close-body {
+  flex: 1; padding: 52px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.close-eye {
+  font-size: 10px; font-weight: 800; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--green); margin-bottom: 28px;
+}
+.close-quote {
+  font-size: 24px; font-weight: 400; line-height: 1.65;
+  color: rgba(255,255,255,.8); max-width: 760px; margin-bottom: 32px;
+}
+.close-quote strong { color: #fff; font-weight: 700; }
+.close-rule { width: 56px; height: 3px; background: var(--green); margin-bottom: 28px; }
+.close-body-text {
+  font-size: 16px; color: rgba(255,255,255,.55);
+  line-height: 1.7; max-width: 640px; margin-bottom: 32px;
+}
+.close-cta { font-size: 17px; font-weight: 700; color: var(--green); margin-bottom: 52px; }
+.close-footer { display: flex; align-items: center; gap: 12px; }
+.close-footer span { font-size: 13px; color: rgba(255,255,255,.25); }
+
+/* ── NAV ── */
+.nav-btn {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200; transition: background .18s;
+  color: rgba(255,255,255,.8);
+}
+.nav-btn:hover { background: rgba(255,255,255,.2); }
+.nav-prev { left: 12px; }
+.nav-next { right: 12px; }
+.nav-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.progress { position: fixed; bottom: 0; left: 0; height: 3px; background: var(--green); transition: width .35s ease; z-index: 200; }
+.counter { position: fixed; bottom: 9px; right: 16px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45); font-family: 'Inter', sans-serif; z-index: 200; }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+<!-- ══ SLIDE 1 — TITLE ══ -->
+<div class="slide active" id="s1">
+  <div class="top-accent"></div>
+  <div class="title-body">
+    <div class="title-text">
+      <div class="t-eye">A Proposal for EPAM North America</div>
+      <h1>The AI<br><em>Champions</em><br>Guild</h1>
+      <div class="t-sub">EPAM NA already has the talent.<br>This is how we activate it.</div>
+      <div class="t-meta">AI/RUN Team &nbsp;·&nbsp; VP Briefing &nbsp;·&nbsp; April 2026</div>
+    </div>
+  </div>
+  <div class="title-footer">
+    <div class="epam-badge">EP<em>A</em>M</div>
+    <span style="color:rgba(255,255,255,.25); font-size:13px;">North America</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 2 — OPPORTUNITY ══ -->
+<div class="slide" id="s2">
+  <div class="slide-head">
+    <div class="eyebrow">The Opportunity</div>
+    <h2>249 Credentialed Experts. Zero Activation.</h2>
+  </div>
+  <div class="slide-body">
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-n">249</div>
+        <div class="stat-l">AI-Badged People in NA</div>
+        <div class="stat-s">111 A-track (ICs) · 134 B/C-track (managers, consultants, executives)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">67</div>
+        <div class="stat-l">AI Champions</div>
+        <div class="stat-s">Raised a real project team's AI maturity to L2 or L3 — in delivery, not training</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">115</div>
+        <div class="stat-l">AI Practitioners</div>
+        <div class="stat-s">Contributed to project teams operating at AI maturity L2 or L3</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">9</div>
+        <div class="stat-l">EngX AI Productivity Experts</div>
+        <div class="stat-s">Certified to measure AI-driven productivity gains inside active engagements</div>
+      </div>
+    </div>
+    <div class="callout">
+      <p>That's not a talent gap. That's an inventory problem. The question isn't whether EPAM NA has the AI expertise to operate differently — it does. The question is whether that expertise is <strong>organized into something deployable</strong>: into proposals, estimates, and capability development, or whether it remains a list of names in a People Analytics report that no one can route work through.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 3 — WHAT IT IS ══ -->
+<div class="slide" id="s3">
+  <div class="slide-head">
+    <div class="eyebrow">What the Guild Is</div>
+    <h2>A Community of Practice — With a Commercial Mandate</h2>
+  </div>
+  <div class="slide-body">
+    <div class="not-is-row">
+      <div class="notbox">
+        <h4>Not This</h4>
+        <ul>
+          <li>A governance committee that approves tools</li>
+          <li>A training program or certification track</li>
+          <li>A Slack channel for sharing AI tips</li>
+          <li>A passive community with optional participation</li>
+        </ul>
+      </div>
+      <div class="isbox">
+        <h4>This</h4>
+        <ul>
+          <li>An active capability pool with real work to do</li>
+          <li>A mechanism to route proposals to the right experts</li>
+          <li>A knowledge engine where sharing builds collective capability</li>
+          <li>The commercial expression of EPAM NA's AI talent</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-text">
+        <p style="margin-bottom:10px;"><strong>Scope: AI/RUN and AI SDLC Maturity.</strong> How project teams use AI in software delivery, how to measure that usage, and how to advance team maturity over time. Not a guild for building AI-powered products for clients — that's a different discipline. The boundary keeps the Guild narrow enough to be genuinely useful.</p>
+        <p>The community is the mechanism through which the work happens and knowledge spreads. Individual development and organizational capability are the same motion — not competing priorities.</p>
+      </div>
+      <div class="bcg-box">
+        <div class="bcg-eye">BCG Research</div>
+        <div class="bcg-n">2.1×</div>
+        <div class="bcg-desc">greater ROI when 70% of AI investment goes to <strong>people and process</strong> — not tools and infrastructure. The Guild is the 70%.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 4 — MEMBERSHIP ══ -->
+<div class="slide" id="s4">
+  <div class="slide-head">
+    <div class="eyebrow">Membership</div>
+    <h2>Earned, Not Self-Selected — Two Tiers</h2>
+  </div>
+  <div class="slide-body">
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th style="width:120px;">Tier</th>
+          <th>Eligibility</th>
+          <th style="width:90px; text-align:center;">Eligible</th>
+          <th>Rights &amp; Responsibilities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-full">Full Member</span></td>
+          <td><strong>AI Champion</strong> <span style="color:var(--muted);">or</span> <strong>EngX AI Productivity Expert</strong></td>
+          <td style="text-align:center;"><span class="badge-count">~76</span></td>
+          <td>Lead BU Community working groups &nbsp;·&nbsp; Primary AI SME on proposals (named) &nbsp;·&nbsp; Vote on governance &nbsp;·&nbsp; Named in external capability statements &nbsp;·&nbsp; Mentor Associates</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-assoc">Associate</span></td>
+          <td><strong>AI Practitioner</strong> <span style="color:var(--muted);">or</span> <strong>Claude Certified Architect</strong></td>
+          <td style="text-align:center;"><span class="badge-count">~115+</span></td>
+          <td>All guild &amp; BU Community activities &nbsp;·&nbsp; Supporting role on proposals &nbsp;·&nbsp; Full knowledge base &amp; peer network access &nbsp;·&nbsp; Clear path to Full Member via AI Champion badge</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-pipe">Pipeline</span></td>
+          <td><strong>AI Ready</strong> badge or active program participants</td>
+          <td style="text-align:center;"><span style="font-size:18px;font-weight:900;color:#4A5568;">~41+</span></td>
+          <td>Tracked as membership pipeline — approaching guild-eligible status. Primary growth source for the Associate tier.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="two-note" style="margin-top:14px;">
+      <div class="note-green">
+        <p><strong>On badge currency:</strong> Badge status is a starting filter, not a permanent credential. Active membership requires at least one contribution per quarter — a proposal review, workshop, or use-case sprint. The program lead tracks engagement. Members who go dark move to pipeline.</p>
+      </div>
+      <div class="note-amber">
+        <p><strong>Open item:</strong> The relationship between the AI Ambassador program and guild membership has not yet been resolved. This should be defined before the Guild launches — whether Ambassadors automatically qualify for a tier or operate in a parallel track.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 5 — ORG STRUCTURE ══ -->
+<div class="slide" id="s5">
+  <div class="slide-head">
+    <div class="eyebrow">Organization</div>
+    <h2>Guild Level + BU Communities</h2>
+  </div>
+  <div class="slide-body">
+    <div class="org-cols">
+      <div>
+        <div class="org-panel org-guild" style="margin-bottom:12px;">
+          <div class="org-label">Guild Level — Cross-BU</div>
+          <div class="org-title">Consistency &amp; Coordination</div>
+          <ul class="org-list">
+            <li>Maintains charter and membership standards</li>
+            <li>Routes proposals to right experts regardless of BU</li>
+            <li>Hosts guild-wide events and shared case library</li>
+            <li>Sets AI SDLC maturity standards and measurement frameworks</li>
+            <li>Coordinates cross-BU knowledge sharing and synthesis</li>
+          </ul>
+        </div>
+        <div class="org-connector">Knowledge flows both ways</div>
+        <div class="org-panel org-bu">
+          <div class="org-label">BU Community Level — Per Business Unit</div>
+          <div class="org-title">Local Delivery &amp; Execution</div>
+          <ul class="org-list">
+            <li>BU-specific proposal and bid support</li>
+            <li>Local practitioner sessions and peer learning</li>
+            <li>Tracks AI SDLC maturity progress within the BU</li>
+            <li>Surfaces BU-specific blockers up to guild level</li>
+            <li>Led by a Full Member BU Community lead</li>
+          </ul>
+        </div>
+      </div>
+      <div class="why-box" style="align-self: start;">
+        <div class="why-eye">Why "BU Communities" — not Chapters</div>
+        <p class="why-p" style="margin-bottom:12px;">In the Spotify model, "chapters" are skill-based groupings <em>within</em> tribes — a different concept entirely. Using "chapters" as guild sub-groups inverts the model and creates immediate confusion for anyone familiar with it.</p>
+        <p class="why-p"><strong>BU Communities</strong> is accurate, unambiguous, and fits EPAM's organizational language without importing model confusion.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 6 — THREE JOBS ══ -->
+<div class="slide" id="s6">
+  <div class="slide-head">
+    <div class="eyebrow">Commercial Mandate</div>
+    <h2>Three Jobs. Measurable Outcomes.</h2>
+  </div>
+  <div class="slide-body">
+    <div class="jobs-grid">
+      <div class="job-card">
+        <div class="job-n">Job 01</div>
+        <h3>AI-Enabled Project Proposals</h3>
+        <p>When a bid requires AI scoping, an intake trigger routes to the program lead. Right experts identified within <strong>24–48 hours</strong>. Full Members as primary SMEs; Associates in supporting roles. Async and time-boxed so billable work isn't disrupted.</p>
+        <div class="job-tag">→ Direct revenue function</div>
+      </div>
+      <div class="job-card">
+        <div class="job-n">Job 02</div>
+        <h3>Work Estimation for AI-Enabled Teams</h3>
+        <p>Estimating AI-enabled engagements is fundamentally different from traditional estimation. The <strong>9 EngX AI Productivity Experts</strong> are the critical asset here. Target: grow this bench to <strong>25–30 within 12 months</strong> via structured measurement training for active Practitioners.</p>
+        <div class="job-tag">→ Scope accuracy = win rate</div>
+      </div>
+      <div class="job-card">
+        <div class="job-n">Job 03</div>
+        <h3>AI-Native Capability Development</h3>
+        <p>Identify what EPAM does distinctively well in AI/RUN and SDLC maturity. Document it. Scale it. Use cases captured, patterns identified, playbooks built. Collective intelligence converted into organizational capability no single engagement can produce.</p>
+        <div class="job-tag">→ Differentiation competitors can't easily match</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:16px;">
+      <p>Every Guild activity has a test: does this help <strong>win a proposal</strong>, <strong>estimate more accurately</strong>, or <strong>build a capability</strong>? If not, it's not Guild work.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 7 — WHY JOIN ══ -->
+<div class="slide" id="s7">
+  <div class="slide-head">
+    <div class="eyebrow">Member Value Proposition</div>
+    <h2>Why Join the Guild</h2>
+  </div>
+  <div class="slide-body">
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="b-icon">🎯</div>
+        <div>
+          <div class="b-title">Purpose</div>
+          <div class="b-desc">Guild members are defining what AI-native delivery looks like at EPAM NA. Not a program to participate in — a professional identity. Being the person your BU calls when a proposal needs real AI scoping is not a perk. It's a role.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="b-icon">🛠</div>
+        <div>
+          <div class="b-title">Tools <span class="note">(proposed)</span></div>
+          <div class="b-desc">Full Members: priority allocation from a pool of premium AI licenses — <strong>Claude Pro, GitHub Copilot Enterprise</strong>, and equivalents. Associates: standard-tier access. Guild members are expected to develop and share deep tool expertise; they need consistent access to the best versions. License cost is modest against the revenue impact of the capability.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="b-icon">📈</div>
+        <div>
+          <div class="b-title">Career</div>
+          <div class="b-desc">Full Members: named on proposals and capability statements, preferred routing to high-skill AI engagements, influence over how EPAM NA prices and scopes AI work. Associates: a concrete, visible path to Full Member. <strong>Microsoft: 71%</strong> of leaders now prefer AI-credentialed candidates — clients evaluating your team proposals are running the same logic.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="b-icon">🤝</div>
+        <div>
+          <div class="b-title">Community</div>
+          <div class="b-desc">Access to the most AI-credentialed peer group in NA — people who understand what the work actually involves, who you can reach when stuck, who will pressure-test an approach honestly. No single client engagement generates this network. The Guild does.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 8 — HOW TO LAUNCH ══ -->
+<div class="slide" id="s8">
+  <div class="slide-head">
+    <div class="eyebrow">Activation Plan</div>
+    <h2>Four Phases. 90-Day Proof of Life.</h2>
+  </div>
+  <div class="slide-body">
+    <div class="phases-row">
+      <div class="phase">
+        <div class="phase-dot">P0</div>
+        <div class="phase-timing">Weeks 1–4</div>
+        <h3>Foundation</h3>
+        <ul>
+          <li>Appoint program lead (non-negotiable)</li>
+          <li>Segment 249 into Full / Associate tiers</li>
+          <li>Build searchable member registry</li>
+          <li>Secure named executive sponsor</li>
+          <li>Resolve: AI Ambassadors, license budget, BU Community leads</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot">P1</div>
+        <div class="phase-timing">Weeks 4–8</div>
+        <h3>Launch</h3>
+        <ul>
+          <li>Invite eligible members (opt-in within pool)</li>
+          <li>Charter BU Communities, name leads</li>
+          <li>Founding event: surface first real work — live proposals, BU maturity problems</li>
+          <li>End with an action list, not workstream definitions</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot">P2</div>
+        <div class="phase-timing">Weeks 8–12</div>
+        <h3>Operationalize</h3>
+        <ul>
+          <li>One proposal routed through the Guild</li>
+          <li>One documented use case per BU Community</li>
+          <li>AI SDLC maturity baseline captured</li>
+          <li>One Associate on a clearer path to Full Member</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot">P3</div>
+        <div class="phase-timing">Months 3–6</div>
+        <h3>Scale</h3>
+        <ul>
+          <li>Grow EngX bench: 9 → 25–30</li>
+          <li>Track first Associate → Full Member cohort</li>
+          <li>Review license allocation vs. usage</li>
+          <li>Publish first cross-BU knowledge synthesis</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mvp-strip">
+      <div class="mvp-tag">Minimum Viable Guild</div>
+      <div class="mvp-copy"><strong>Named program lead</strong> + <strong>activated member registry</strong> + <strong>one real proposal routed through the Guild.</strong> Everything else grows from there.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 9 — THE ASK ══ -->
+<div class="slide" id="s9">
+  <div class="slide-head">
+    <div class="eyebrow">Executive Sponsorship</div>
+    <h2>What We Need to Start</h2>
+  </div>
+  <div class="slide-body">
+    <div class="ask-list">
+      <div class="ask-item">
+        <div class="ask-num">1</div>
+        <div>
+          <div class="ask-h">Your sponsorship — named, not ceremonial</div>
+          <div class="ask-p">The Guild needs an executive sponsor whose mandate formally includes its success. Not someone who endorsed the concept in a meeting — a named leader with the authority to unblock open items, defend the program when it competes with other priorities, and hold the program lead accountable.</div>
+        </div>
+      </div>
+      <div class="ask-item">
+        <div class="ask-num">2</div>
+        <div>
+          <div class="ask-h">Appoint a program lead within 30 days</div>
+          <div class="ask-p">Not a volunteer, not a committee, not a pending decision — a named individual whose primary accountability is the Guild. Programs run by people with no dedicated time have no momentum. That's not a leadership failure — it's physics.</div>
+        </div>
+      </div>
+      <div class="ask-item">
+        <div class="ask-num">3</div>
+        <div>
+          <div class="ask-h">Resolve three open items before launch</div>
+          <div class="ask-p"><strong style="color:rgba(255,255,255,.8);">AI Ambassador program relationship</strong> &nbsp;·&nbsp; <strong style="color:rgba(255,255,255,.8);">Premium license budget approval</strong> &nbsp;·&nbsp; <strong style="color:rgba(255,255,255,.8);">BU Community lead identification</strong> across business units. Each is a launch blocker if left unanswered at Phase 1.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 10 — CLOSING ══ -->
+<div class="slide" id="s10">
+  <div class="close-accent"></div>
+  <div class="close-body">
+    <div class="close-eye">The Diagnostic</div>
+    <div class="close-quote">
+      If EPAM NA's <strong>249 credentialed AI experts</strong> have no way to find each other, no mechanism to contribute to proposals, and no shared repository of what they've learned —<br><br>
+      you don't have a guild. You have a list.
+    </div>
+    <div class="close-rule"></div>
+    <div class="close-body-text">
+      The talent exists. The credentials are earned. The commercial need is real.<br>
+      What's missing is the activation layer.
+    </div>
+    <div class="close-cta">The question is who is routing work to them today.</div>
+    <div class="close-footer">
+      <div class="epam-badge">EP<em>A</em>M</div>
+      <span>North America &nbsp;·&nbsp; AI Champions Guild Proposal &nbsp;·&nbsp; April 2026</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<button class="nav-btn nav-prev" id="prevBtn" onclick="go(-1)" title="Previous (←)">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+<button class="nav-btn nav-next" id="nextBtn" onclick="go(1)" title="Next (→)">
+  <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</button>
+
+<div class="progress" id="prog"></div>
+<div class="counter" id="ctr">1 / 10</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+const total = slides.length;
+let cur = 0;
+
+function go(d) {
+  slides[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(total - 1, cur + d));
+  slides[cur].classList.add('active');
+  document.getElementById('prog').style.width = ((cur + 1) / total * 100) + '%';
+  document.getElementById('ctr').textContent = (cur + 1) + ' / ' + total;
+  document.getElementById('prevBtn').style.opacity = cur === 0 ? '.3' : '1';
+  document.getElementById('nextBtn').style.opacity = cur === total - 1 ? '.3' : '1';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); go(-1); }
+});
+
+// Init
+go(0);
+</script>
+</body>
+</html>

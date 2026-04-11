@@ -1,0 +1,197 @@
+# The AI Champions Guild: EPAM NA Already Has the Talent. Now Activate It.
+*Draft v7 | Benefits Section Revision | 2026-04-03 | ~1,750 words*
+
+---
+
+EPAM North America has 249 people with formal AI recognition badges. Sixty-seven have already raised a project team's AI maturity to Level 2 or Level 3 — not in a training exercise, in actual delivery. One hundred fifteen more have contributed to teams operating at that level. Nine are certified to measure AI-driven productivity gains. Fifteen are credentialed to architect AI solutions.
+
+That's not a talent gap. That's an inventory problem.
+
+The question isn't whether EPAM NA has the AI expertise to operate differently. It does. The question is whether that expertise is organized into something deployable — into proposals, estimates, capability development — or whether it remains a list of names in a People Analytics report that no one can route work through.
+
+The AI Champions Guild answers that question. Not by building something new. By activating what's already there.
+
+---
+
+## A Community of Practice — With a Commercial Mandate
+
+Let's establish the right frame.
+
+The Guild is a community of practice. But it's a community of practice with a job to do — and that distinction is what keeps it from becoming a Slack channel for sharing AI tips or a governance committee that approves tool selections. The moment those definitions take over, the Guild becomes an overhead item that competes with billable work and loses.
+
+The specificity of the mandate is what makes the community work. The Guild's domain is **AI/RUN and AI SDLC Maturity** — how project teams use AI in software delivery, how to measure that usage, and how to advance team maturity over time. This is not a guild for building AI-powered products for clients. That's a different discipline with different skill requirements. The Guild's knowledge base, case library, and practitioner sessions all operate within the AI/RUN and SDLC maturity domain. The boundary matters: it keeps the Guild's scope narrow enough to be genuinely useful rather than diffuse.
+
+Within that domain, the Guild exists to make EPAM NA better at winning and delivering AI-enabled work. That's consequential enough to justify the investment.
+
+BCG's research is worth citing here: organizations that invest 70% of their AI effort in people and process — rather than tools and infrastructure — achieve 2.1x greater ROI and scale twice as many initiatives. For EPAM's clients, that principle explains why they need us. For EPAM NA, it explains why to invest in the Guild: if people and process are the multiplier, organizing our most capable practitioners into an active, knowledge-sharing community is the highest-ROI infrastructure investment the practice can make. The Guild is the 70%. Not the vendor selection. Not the architecture review. This.
+
+The distinction worth preserving: most communities of practice are passive by design — shared interest, optional participation, loose structure. The Guild is an active capability pool. Members have real work to do: proposals to scope, estimates to validate, capabilities to build. The community is the mechanism through which that work happens and through which knowledge spreads. Those are the same thing, not a tension.
+
+If a formal AI Center of Excellence exists or is planned for NA, the Guild is the field layer — the distributed practitioner community the CoE coordinates but doesn't replace. If no CoE exists, the Guild's program lead effectively serves that coordinating function.
+
+---
+
+## Who Belongs: Earned, Not Self-Selected
+
+Most community-of-practice designs fail at the membership model. They either over-select (engineers only) or under-select (open opt-in). Both produce weak networks.
+
+EPAM NA doesn't have this problem. It has a credential system that already identifies who has demonstrated relevant capability. Guild membership draws directly from it — and the structure distinguishes between two tiers with different rights and different responsibilities.
+
+### Full Members
+
+Full Member status is earned by holding the **AI Champion badge** or the **EngX AI Productivity Expert badge**.
+
+These credentials represent demonstrated operational impact. AI Champions have already shifted a real project team's AI posture — their experience is field-tested, not theoretical. Nearly half are B-track (35 managers and consultants), which means this isn't a developer-only cohort. EngX AI Productivity Experts are rarer still: nine people in the entire NA practice who are trained to measure AI-driven productivity gains inside active engagements. For a services company, that capability is commercially significant — it's how you prove ROI to a client.
+
+Full Members are the Guild's proven operators. Their role reflects that:
+
+- Lead BU Community working groups within their business unit
+- Serve as **primary AI SME on proposals** — named, not just supporting
+- Mentor Associate Members toward Full Member status
+- Vote on guild governance decisions
+- Named in EPAM NA external-facing capability statements
+
+That last point is not incidental. When EPAM presents AI-enabled delivery capacity to a client or partner, Full Members are the names on the capability statement. The guild's external credibility runs through them.
+
+### Associate Members
+
+Associate Member status is earned by holding the **AI Practitioner badge** or having passed the **Claude Certified Architect exam**.
+
+These are credentialed practitioners who have demonstrated delivery-level AI skills. AI Practitioners contribute to teams operating at L2 or L3 maturity — A-track leads here (63 of 115), which reflects where the delivery layer sits. Claude Certified Architects bring solution design fluency that complements the delivery-focused Practitioner credential.
+
+Associate membership is the entry point and the motivation layer. The explicit path to Full Member status runs through earning the AI Champion badge. Associates see exactly what they'd gain by making that move: not just a badge, but a role and a voice in how EPAM NA builds and sells AI-enabled work.
+
+Associate Members can:
+
+- Participate in all guild and BU Community activities
+- Contribute to proposals in a supporting role (not as primary SME lead)
+- Access the full guild knowledge base and peer network
+- Receive mentorship from Full Members
+
+**On badge currency.** "Earned, not self-selected" is the right principle — but leadership will ask: earned when? The Guild treats badge status as a starting filter, not a permanent credential. Active membership requires contribution: at least one proposal, workshop, or use-case sprint per quarter. The program lead tracks engagement. Members who go dark move to the pipeline tier. A roster of credentialed members who are no longer engaged is not the same as an active capability pool. The distinction matters for any account lead staffing an AI-scoped engagement.
+
+**On AI Ambassadors.** EPAM has a separate AI Ambassador program. The relationship between that program and guild membership — whether Ambassadors automatically qualify for Associate or Full Member status, whether they operate in a parallel track, or whether the programs remain distinct — has not yet been resolved and should be defined before the Guild launches.
+
+**The pipeline tier — Guild-Eligible:**
+
+The **AI Ready** badge (41 people) and active program participants represent the population approaching guild-eligible status. The Guild should track this group deliberately — they're where membership growth comes from. Many are on the path to their AI Practitioner or AI Champion badge already.
+
+One structural note: the A-track and B-track split across badge types is not accidental, and the Guild has to bridge it deliberately. B-track dominates the senior, strategic credentials; A-track leads in delivery-focused Practitioners. A proposal needs both. An accurate estimate for an AI-enabled engagement needs both. Design the Guild's operating model to mix these populations, not silo them.
+
+---
+
+## How the Guild is Organized: Guild Level and BU Communities
+
+The Guild operates at two levels. Both are necessary. Neither replaces the other.
+
+**At the guild level**, the structure is cross-BU. The guild level maintains the charter and membership standards, coordinates knowledge sharing across business units, routes proposals to the right experts regardless of where they sit, hosts guild-wide events, and maintains the shared case library. Critically, the guild level sets the AI SDLC maturity standards and measurement frameworks that BU Communities apply locally. This is where consistency lives.
+
+**At the BU Community level**, the structure is local. Each Business Unit has a BU Community — a sub-group of Full and Associate Members aligned to that BU's delivery context. BU Communities support BU-specific proposal and bid work, run local practitioner sessions and peer learning, track AI SDLC maturity progress within the BU, and surface BU-specific blockers and patterns up to the guild level. BU Community members are responsible for supporting their BU's AI-enabled delivery — this is not an advisory function.
+
+Full Members lead BU Community working groups. Associate Members participate and contribute. The flow of knowledge runs both ways: guild-level standards and cross-BU patterns flow down; BU-specific findings and blockers flow up.
+
+Note on terminology: these BU-aligned sub-groups are deliberately called **BU Communities**, not chapters. "Chapter" carries specific meaning in the Spotify model, where chapters are skill-based groupings within tribes — a different concept entirely. Calling them BU Communities keeps the structure accurate and avoids importing organizational model confusion.
+
+---
+
+## The Three Jobs the Guild Does
+
+Vague mandates — "share knowledge," "drive adoption," "build culture" — produce vague results. The EPAM NA Guild has three concrete jobs.
+
+Before naming them: understand the underlying logic. When practitioners share what they're learning across client engagements, two things happen simultaneously. The individual sharpens their thinking by articulating it. The community accumulates knowledge no single engagement could generate alone. Individual development and organizational capability are the same motion. The Guild's three jobs are the commercial expression of that flywheel.
+
+**Job 1: AI-Enabled Project Proposals**
+
+When EPAM NA pursues AI-enabled work, the bid team needs people who can scope accurately, advise on team composition, and reality-check what's achievable. Right now, that knowledge exists inside 67 AI Champions and a handful of Architects scattered across NA. The Guild creates the mechanism to route a live bid to the right experts. When an opportunity enters a pipeline stage requiring AI scoping, an intake trigger notifies the program lead. The lead matches requirements against the searchable member registry and identifies contributors within 24 to 48 hours. Full Members serve as primary SMEs on proposals; Associates contribute in a supporting role. Because most Guild members are mid-sprint on client engagements, contribution runs asynchronously and time-boxed: a member reviews scoping assumptions or validates an estimate in a bounded window — not by stepping out of delivery. This is a direct revenue function.
+
+**Job 2: Work Estimation for AI-Enabled Teams**
+
+Estimating effort for AI-enabled project teams is fundamentally different from traditional estimation. Productivity curves, skill mix, and team structure all look different. Getting this wrong has immediate commercial consequences: underestimate and you're underwater, overestimate and you lose the bid. The EngX AI Productivity Experts are the Guild's most critical asset for this job — they measure AI SDLC maturity and productivity impact in actual engagements, which is exactly the Guild's domain. Nine people covering a 3,400-person practice is a starting point, not a steady state. The Guild's first capability development goal should be growing this bench to 25 to 30 within 12 months. Until then, these nine need a clear, low-friction path to contribute without being pulled off billable work.
+
+**Job 3: AI-Native Capability Development**
+
+EPAM NA's long-term competitive position depends on building AI delivery capabilities that clients can't replicate internally and competitors can't easily match. That means identifying what EPAM does distinctively well in AI/RUN and SDLC maturity, documenting it, and scaling it. Use cases documented. Patterns identified. Playbooks developed. The collective intelligence of credentialed practitioners converted into organizational capability. The community is how that conversion happens — not as an abstraction, but through the specific practices described in the next section.
+
+These three jobs give every Guild activity a test: does this help win a proposal, estimate more accurately, or build a capability? If not, it's not Guild work.
+
+---
+
+## Leadership: Two Tiers, Clear Accountability
+
+The Guild needs a named program lead with dedicated bandwidth — not a side project, not a rotating responsibility, not "someone who has time." A person who owns the program as a primary accountability. This role designs the operating model, manages member engagement, routes experts to bid opportunities, tracks what's being learned, and tends to the community's health.
+
+This is not a coordination task. Programs run by people with no dedicated time have no momentum. That's not a leadership failure — it's physics.
+
+Individual Guild members operate part-time. Their primary job remains their primary job. What they contribute is specific and bounded: input on a proposal here, a review of an estimate there, a documented use case when a project wraps. Routine engagement stays low-floor; bid windows will demand higher-intensity bursts when they're live. Two non-negotiables: a named executive sponsor with actual authority, and a routing mechanism that doesn't depend on informal networks. If bid teams can only find Guild experts through personal connections, the Guild is underperforming its purpose.
+
+---
+
+## What Members Do — and What They Get
+
+The unit of impact is one workflow changed in one colleague's daily work. Not a webinar. Not a slide deck. A specific thing a specific person now does differently because a Guild member showed them how.
+
+**What members contribute.** Guild participation looks like: reviewing a proposal's AI scoping assumptions before submission, coaching a delivery team on estimating AI-assisted sprint velocity, documenting a use case from a closed engagement so the next team doesn't start from scratch, running a practitioner-led session where a member teaches what they learned on a recent engagement. The Guild also maintains a shared case library — sanitized accounts of what worked, what didn't, and why — built by members who contribute findings as engagements close. Peer review of AI approaches across engagements is a standing practice, not an occasional event: when a member is working through a hard problem, the Guild is the first place to test the thinking.
+
+Sanitized war stories are as valued as wins. Without naming that expectation, knowledge-sharing defaults to polished success theater — and a repository of curated victories is not the same as institutional learning.
+
+**What members get in return.**
+
+Guild members are not program participants. They are the people defining what AI-native delivery looks like at EPAM NA. That distinction matters before getting into specific benefits — it sets the terms on which everything else sits.
+
+**Purpose.** The people in this guild are shaping what AI-enabled delivery looks like across the NA practice. That's not a role anyone gets assigned; it's a function of being credentialed, active, and connected to the leading edge of how this work evolves. For practitioners who take this seriously, being the person their BU calls when a proposal needs real AI scoping — and being part of the cohort setting the standards by which that scoping is judged — is not a perk. It's a professional identity.
+
+**Tools.** We recommend that Full Members receive priority allocation from a pool of premium AI tool licenses maintained by the guild program lead — tools such as Claude Pro, GitHub Copilot Enterprise, and comparable AI productivity and development tools as the landscape evolves. Associate Members receive standard-tier access. The logic is direct: guild members are expected to develop and share deep tool expertise; they need consistent access to the best versions of the tools they're teaching. Licensing cost for an active guild membership pool is modest relative to the revenue impact of having credentialed experts available for proposals and delivery. This is a proposal recommendation, not a confirmed benefit — but the program should build it in from the start.
+
+**Career.** The Associate-to-Full Member path is visible and concrete. Full Members get named placement on proposals and capability statements, preferred routing to AI-enabled engagements, and influence over how EPAM NA prices and scopes AI work — not just who does the work, but how the work gets defined. For A-track members, preferred routing means the higher-skill accounts, the projects where the work itself accelerates careers. For B-track members, named contribution to won proposals builds positioning for AI-enabled account leadership. Associates build toward all of this; the upgrade is not abstract. Microsoft reports a 71% preference for AI-certified candidates in hiring decisions — clients making AI-enabled engagement decisions are running the same logic, and the Guild is how EPAM NA fields the credentialed bench those decisions require.
+
+**Community.** For practitioners doing hard AI work on client engagements — working through integration problems, navigating client resistance, trying to figure out if a pattern that worked in one context will transfer to another — a peer cohort has real value that a credential alone doesn't provide. The Guild gives members access to the most AI-credentialed peer group in the NA practice: people who understand what the work actually involves, who you can reach when you're stuck, who will pressure-test an approach honestly rather than diplomatically. That network is what a list of 249 badge-holders can't provide. The Guild can. No single client engagement generates a community. The Guild does.
+
+---
+
+## Why These Programs Fail — and How to Prevent It
+
+Enterprise AI communities of practice die quietly and predictably.
+
+**No executive mandate**: The Guild operates without organizational backing, gets squeezed by competing priorities, and fades. Prevention: a named executive sponsor with real accountability — not ceremonial endorsement — and a commercial mandate that creates its own air cover by tying survival to revenue outcomes.
+
+**Time attrition**: Members carry full primary jobs. When Guild contribution consistently competes with delivery commitments and there's no relief, participation drops to zero. Prevention: bounded participation expectations from the start, and a program lead who actively monitors engagement health.
+
+**Ownership concentration**: Two or three people carry everything. Burnout is guaranteed. Prevention: distributed contribution across the full member base and the quarterly engagement threshold, which keeps the active pool genuinely active rather than concentrated in a core of volunteers who exhaust themselves.
+
+**No visible value**: The Guild can't demonstrate what it's producing, loses executive support, and gets defunded. Prevention: measure what matters — proposals supported, use cases documented, estimation accuracy on AI-enabled bids, capability uplift over time. Not events run. Not members enrolled.
+
+None of these failure modes is structural destiny. Each has a design answer built into the operating model above.
+
+---
+
+## The Diagnostic
+
+If EPAM NA's 249 credentialed AI experts have no way to find each other, no mechanism to contribute to proposals, no shared repository of what they've learned from client engagements, and no program lead whose job is to activate them — you don't have a guild. You have a list.
+
+The talent exists. The credentials are earned. The commercial need is real. What's missing is the activation layer: the structure that converts a distributed inventory of expertise into a community that learns together, builds on each other's experience, and deepens EPAM NA's collective capability in the process.
+
+That's what the Guild is for. A community of practice with a commercial mandate — where the community is the mechanism and the commercial outcomes are what justify it.
+
+EPAM NA's 249 credentialed AI experts are in the system. The question is who is routing work to them today. If the answer is nobody, you already have the answer about whether to start.
+
+---
+
+## Publication Metadata
+- **Word Count**: ~1,750
+- **Reading Time**: 7–8 minutes
+- **Target Audience**: EPAM NA leadership — account leads, delivery leaders, practice heads
+- **Key Topics**: AI Champions Guild, EPAM NA, capability activation, AI-enabled delivery, community of practice, proposal excellence, workforce optimization, AI SDLC maturity
+
+## Revision Notes
+- **Benefits section restructured**: Four named benefits — Purpose, Tools, Career, Community — replace the prior two-paragraph treatment
+- **Purpose elevated as identity hook**: Leads the section; establishes members as definers of AI-native delivery, not program participants
+- **Tool licenses added**: Framed as a proposal recommendation (Full Members: premium tier; Associates: standard tier); includes rationale and cost logic
+- **Career section consolidated**: A-track and B-track logic preserved and extended; Microsoft stat retained in context
+- **Community section preserved and sharpened**: Core language retained, closing line strengthened
+- **All preserved elements confirmed**: "The unit of impact is one workflow changed," "That's not a leadership failure — it's physics," closing diagnostic, all structural elements from v6
+
+## Source References
+1. BCG AI Adoption Report — 10-20-70 principle; 2.1x ROI
+2. EPAM NA Context Brief (2026-04-03) — badge counts, track splits, business model context
+3. Microsoft Work Trend Index 2024 — 71% AI certification hiring preference
+4. ACM/Spotify, PLOS One CoP research — failure mode documentation

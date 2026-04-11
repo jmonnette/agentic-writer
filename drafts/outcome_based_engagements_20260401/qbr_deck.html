@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hourly Rates Are Dead — EPAM East BU QBR 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0B1622;
+    --surface:   #132032;
+    --card:      #1B2E42;
+    --border:    #243D55;
+    --teal:      #00C2A8;
+    --teal-dim:  #008F7A;
+    --orange:    #FF6B35;
+    --blue:      #4A9EFF;
+    --text:      #FFFFFF;
+    --text-dim:  #8BA8C2;
+    --text-muted:#4A6680;
+    --green:     #34D399;
+    --red:       #F87171;
+    --yellow:    #FBBF24;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* ── Progress bar ── */
+  #progress {
+    position: fixed; top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--blue));
+    transition: width 0.4s ease;
+    z-index: 100;
+  }
+
+  /* ── Slide container ── */
+  #deck {
+    width: 100%; height: 100%;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .slide.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── Navigation ── */
+  #nav {
+    position: fixed; bottom: 28px; right: 36px;
+    display: flex; gap: 10px; align-items: center;
+    z-index: 100;
+  }
+  .nav-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { background: var(--card); color: var(--text); border-color: var(--teal); }
+
+  #slide-counter {
+    position: fixed; bottom: 32px; left: 36px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    z-index: 100;
+  }
+
+  /* ── Section label ── */
+  .section-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal);
+    padding: 4px 10px;
+    border: 1px solid var(--teal-dim);
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+  /* ── Typography ── */
+  .slide-title {
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .slide-subtitle {
+    font-size: clamp(15px, 1.6vw, 20px);
+    font-weight: 400;
+    color: var(--text-dim);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  .accent { color: var(--teal); }
+  .orange { color: var(--orange); }
+  .blue-text { color: var(--blue); }
+
+  /* ── Layout helpers ── */
+  .slide-inner {
+    flex: 1;
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .slide-inner.center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .card.teal-border { border-top: 3px solid var(--teal); }
+  .card.orange-border { border-top: 3px solid var(--orange); }
+  .card.blue-border { border-top: 3px solid var(--blue); }
+  .card.green-border { border-top: 3px solid var(--green); }
+  .card h3 {
+    font-size: 14px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .card p, .card li {
+    font-size: 14px; color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .card ul { padding-left: 16px; }
+  .card li { margin-bottom: 6px; }
+  .card .big-number {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .card .label {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  /* ── Stat callout ── */
+  .stat-row {
+    display: flex; gap: 24px;
+    margin-top: 28px;
+  }
+  .stat-box {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .stat-box .num {
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-box .desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.45;
+  }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  th {
+    background: var(--surface);
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td strong { color: var(--text); }
+
+  /* ── Pill badges ── */
+  .badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+  .badge-teal { background: rgba(0,194,168,0.15); color: var(--teal); }
+  .badge-orange { background: rgba(255,107,53,0.15); color: var(--orange); }
+  .badge-blue { background: rgba(74,158,255,0.15); color: var(--blue); }
+  .badge-green { background: rgba(52,211,153,0.15); color: var(--green); }
+  .badge-red { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  /* ── Divider line ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+
+  /* ── Bullet list ── */
+  .bullet-list { list-style: none; padding: 0; }
+  .bullet-list li {
+    display: flex; gap: 12px;
+    font-size: 15px; color: var(--text-dim);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .bullet-list strong { color: var(--text); }
+
+  /* ── Level steps ── */
+  .level-row {
+    display: flex; gap: 0;
+    margin-top: 20px;
+    align-items: stretch;
+  }
+  .level-step {
+    flex: 1;
+    padding: 16px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .level-step:first-child { border-radius: 8px 0 0 8px; }
+  .level-step:last-child { border-radius: 0 8px 8px 0; }
+  .level-step + .level-step { border-left: none; }
+  .level-step.highlight {
+    background: rgba(0,194,168,0.08);
+    border-color: var(--teal);
+  }
+  .level-step .lnum {
+    font-size: 10px; font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .level-step.highlight .lnum { color: var(--teal); }
+  .level-step h4 {
+    font-size: 13px; font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .level-step p {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.45;
+  }
+  .level-arrow {
+    display: flex; align-items: center;
+    color: var(--text-muted);
+    font-size: 16px;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── Quote ── */
+  .quote-block {
+    border-left: 3px solid var(--teal);
+    padding: 14px 20px;
+    margin: 16px 0;
+    background: rgba(0,194,168,0.05);
+    border-radius: 0 6px 6px 0;
+  }
+  .quote-block p {
+    font-size: 15px; font-style: italic;
+    color: var(--text-dim); line-height: 1.6;
+  }
+  .quote-block .source {
+    font-size: 12px; font-style: normal;
+    color: var(--text-muted); margin-top: 6px;
+  }
+
+  /* ── Header bar (for titled slides) ── */
+  .slide-header {
+    padding: 28px 64px 0;
+    display: flex; align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  /* ── Special: title slide ── */
+  .title-slide {
+    background: linear-gradient(135deg, #0B1622 0%, #0D2035 60%, #0B1E30 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .title-slide::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,194,168,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .title-slide::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,158,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── Warning banner ── */
+  .warning-banner {
+    background: rgba(255,107,53,0.1);
+    border: 1px solid rgba(255,107,53,0.3);
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex; gap: 12px; align-items: flex-start;
+    margin: 16px 0;
+  }
+  .warning-banner .icon { font-size: 20px; flex-shrink: 0; }
+  .warning-banner p { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+  .warning-banner strong { color: var(--orange); }
+
+  /* ── Two-panel layout ── */
+  .panel-left, .panel-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* ── Objection card ── */
+  .objection-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+  }
+  .objection-card .persona {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .objection-card .objection-text {
+    font-size: 13px; color: var(--text-dim);
+    font-style: italic; margin-bottom: 8px;
+    line-height: 1.45;
+  }
+  .objection-card .response-text {
+    font-size: 13px; color: var(--text-dim);
+    line-height: 1.45;
+  }
+  .objection-card .response-text strong { color: var(--green); }
+
+  /* ── Closing slide gradient ── */
+  .closing-slide {
+    background: linear-gradient(160deg, #0B1622 0%, #0A2030 100%);
+  }
+
+  /* ── Scrollable content ── */
+  .scrollable {
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 8px;
+  }
+  .scrollable::-webkit-scrollbar { width: 4px; }
+  .scrollable::-webkit-scrollbar-track { background: transparent; }
+  .scrollable::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ── EPAM watermark ── */
+  .epam-mark {
+    position: fixed; top: 20px; right: 36px;
+    font-size: 12px; font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="epam-mark">EPAM</div>
+<div id="slide-counter">1 / 18</div>
+
+<div id="nav">
+  <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">&#8592;</button>
+  <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">&#8594;</button>
+</div>
+
+<div id="deck">
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 1 — TITLE
+  ══════════════════════════════════════════════ -->
+  <div class="slide title-slide active">
+    <div class="slide-inner center" style="gap: 0;">
+      <div style="margin-bottom: 32px;">
+        <span class="badge badge-teal" style="font-size: 12px; padding: 5px 14px;">East Business Unit &nbsp;·&nbsp; QBR April 2026</span>
+      </div>
+      <h1 style="font-size: clamp(40px, 6vw, 80px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; max-width: 900px;">
+        Hourly Rates<br><span class="accent">Are So 2025</span>
+      </h1>
+      <p style="font-size: clamp(16px, 1.8vw, 22px); color: var(--text-dim); margin-top: 20px; max-width: 600px; line-height: 1.5;">
+        Rethinking commercial models for the AI era — and what every AM and DM needs to do differently starting now.
+      </p>
+      <div style="margin-top: 48px; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">T&M Share of Revenue</div>
+          <div style="font-size: 36px; font-weight: 900; color: var(--orange);">70–80%</div>
+        </div>
+        <div style="width: 1px; background: var(--border); height: 60px; align-self: center;"></div>
+        <div style="text-align: center;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Competitors Shifting</div>
+          <div style="font-size: 36px; font-weight: 900; color: var(--teal);">Now</div>
+        </div>
+        <div style="width: 1px; background: var(--border); height: 60px; align-self: center;"></div>
+        <div style="text-align: center;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Enterprise Buyers Want This</div>
+          <div style="font-size: 36px; font-weight: 900; color: var(--blue);">43%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 2 — THE AI EFFICIENCY TRAP
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Why This Matters</span>
+        <h2 class="slide-title">The AI Efficiency Trap</h2>
+        <p class="slide-subtitle">T&M rewards inefficiency. AI has made that structurally fatal.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-2" style="flex: 1; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card orange-border">
+            <h3>The Math</h3>
+            <div style="display: flex; gap: 24px; margin: 12px 0;">
+              <div>
+                <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Without AI</div>
+                <div style="font-size: 28px; font-weight: 900; color: var(--text);">12 wks</div>
+                <div style="font-size: 22px; font-weight: 700; color: var(--green); margin-top: 4px;">$150K</div>
+              </div>
+              <div style="display: flex; align-items: center; color: var(--text-muted); font-size: 22px;">→</div>
+              <div>
+                <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">With AI</div>
+                <div style="font-size: 28px; font-weight: 900; color: var(--teal);">6 wks</div>
+                <div style="font-size: 22px; font-weight: 700; color: var(--red); margin-top: 4px;">$75K</div>
+              </div>
+            </div>
+            <p>Identical scope delivered. Half the revenue earned. <strong style="color: var(--text);">AI is penalizing efficiency under T&M.</strong></p>
+          </div>
+          <div class="quote-block">
+            <p>"The billable hour was always flawed — it discouraged the very efficiency clients claimed to want."</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card teal-border">
+            <h3>Three Threats, Not One</h3>
+            <ul class="bullet-list" style="margin-top: 4px;">
+              <li><span class="dot" style="background: var(--orange);"></span><div><strong>Project T&M:</strong> AI compresses timelines → revenue drops immediately. Deliver faster, earn less.</div></li>
+              <li><span class="dot" style="background: var(--red);"></span><div><strong>Staff Augmentation:</strong> AI improves each FTE's productivity → clients use this to justify headcount reductions on ongoing contracts. TCS, Infosys, and Wipro are already seeing selective renegotiations.</div></li>
+              <li><span class="dot" style="background: var(--red);"></span><div><strong>Vendor Management Misunderstanding:</strong> Client procurement sees AI as a lever to push down seniority and rates. Their question: <em>"If AI is doing the work, why am I paying for senior engineers?"</em> They fail to see that skilled humans are what makes AI output valuable — not interchangeable with it.</div></li>
+            </ul>
+          </div>
+          <div class="warning-banner">
+            <span class="icon">⚠</span>
+            <p>AI can compress delivery cycles by <strong>60–80%</strong> on specific workstreams. Under T&M, every point of that efficiency gain transfers to the client — not to us. And procurement is now using AI as a justification to <strong>question the value of seniority itself.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 4 — T&M'S END IS INEVITABLE
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">The Structural Case</span>
+        <h2 class="slide-title">The Death of T&M is Inevitable.<br>Only the Timing Is Uncertain.</h2>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-2" style="flex: 1; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <ul class="bullet-list">
+            <li><span class="dot"></span><div>The <em>Wall Street Journal</em> (Dec 2025): AI is rendering the traditional billable hour obsolete across professional services — not just law and consulting, but IT engineering delivery.</div></li>
+            <li><span class="dot"></span><div>Enterprise clients now demand ROI accountability attached to every major IT spend. Open-ended T&M engagements are being challenged in QBRs and contract renewals.</div></li>
+            <li><span class="dot"></span><div>EPAM's own 2026 strategic imperative: convert AI-related demand into higher-margin engagements. <strong style="color: var(--text);">Impossible at scale under hourly billing.</strong></div></li>
+          </ul>
+          <div class="quote-block">
+            <p>"T&M is not disappearing. But it should be the exception — not the default we reach for because it requires no courage to propose."</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card teal-border">
+            <h3>Where T&M Still Works</h3>
+            <ul class="bullet-list" style="margin-top: 4px;">
+              <li><span class="dot" style="background: var(--green);"></span><div>Exploratory discovery and R&D</div></li>
+              <li><span class="dot" style="background: var(--green);"></span><div>Rapidly shifting requirements (early product stage)</div></li>
+              <li><span class="dot" style="background: var(--green);"></span><div>Short-term specialist work with no repeatable pattern</div></li>
+            </ul>
+          </div>
+          <div class="card orange-border">
+            <h3>Where T&M Is Indefensible</h3>
+            <ul class="bullet-list" style="margin-top: 4px;">
+              <li><span class="dot" style="background: var(--red);"></span><div>Defined-scope delivery projects with AI-assisted teams</div></li>
+              <li><span class="dot" style="background: var(--red);"></span><div>Long-running staff aug accounts at risk of rate renegotiation</div></li>
+              <li><span class="dot" style="background: var(--red);"></span><div>Any engagement where the client is asking "what are we getting for this?"</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 3 — THE MARKET HAS MOVED
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Competitive Urgency</span>
+        <h2 class="slide-title">The Market Has Already Moved</h2>
+        <p class="slide-subtitle">Our largest competitors have committed — publicly, at scale.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-3" style="margin-bottom: 24px;">
+        <div class="card teal-border" style="text-align: center;">
+          <div class="big-number accent">25%</div>
+          <div class="label"><strong style="color: var(--text);">McKinsey</strong><br>of global fees now from outcome-based contracts (2025)</div>
+          <div style="margin-top: 12px; font-size: 12px; color: var(--text-muted); font-style: italic;">"AI is changing both what we offer clients and how we price our services."</div>
+        </div>
+        <div class="card blue-border" style="text-align: center;">
+          <div class="big-number blue-text">$1.5B</div>
+          <div class="label"><strong style="color: var(--text);">Accenture</strong><br>GenAI contracts in Q3 FY2025 alone — significant portion outcome-linked</div>
+          <div style="margin-top: 12px; font-size: 12px; color: var(--text-muted); font-style: italic;">Fees tied directly to client KPIs: cost reduction, revenue uplift, SLAs.</div>
+        </div>
+        <div class="card orange-border" style="text-align: center;">
+          <div class="big-number orange">50%</div>
+          <div class="label"><strong style="color: var(--text);">Wipro</strong><br>public target for risk-sharing models — stated to investors</div>
+          <div style="margin-top: 12px; font-size: 12px; color: var(--text-muted); font-style: italic;">"Most contracts now comprise hybrid pricing rather than 100% T&M."</div>
+        </div>
+      </div>
+      <div class="cols-2">
+        <div class="card green-border">
+          <h3>The Margin Argument</h3>
+          <p>McKinsey research finds companies using value-based pricing achieve <strong style="color: var(--green);">profit margins 15% higher</strong> than peers on traditional models. Outcome-based clients are better clients.</p>
+        </div>
+        <div class="card" style="border-color: var(--border);">
+          <h3>The Client Demand Signal</h3>
+          <p>CIOs entered 2026 with <strong style="color: var(--text);">"budget exhaustion"</strong> after years of AI pilots with limited results. <strong style="color: var(--yellow);">43% of enterprise buyers</strong> actively prefer vendors willing to share risk through pricing. <span style="font-size: 12px; color: var(--text-muted);">(PwC)</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 5 — START THE CONVERSATION NOW
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">The Imperative</span>
+        <h2 class="slide-title">Start the Conversation Now.<br>Before the Client Does.</h2>
+        <p class="slide-subtitle">The defensive move and the offensive move are the same.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-2" style="flex: 1; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card teal-border" style="flex: 1;">
+            <h3>The Question That Changes the Conversation</h3>
+            <div class="quote-block" style="margin-top: 8px;">
+              <p>"What business problem are you actually trying to solve — and how will you know when it's solved?"</p>
+            </div>
+            <p style="font-size: 13px; margin-top: 10px;">A client who can answer this precisely is ready to contract on outcomes. A client who says "we need more developers" hasn't connected work to results. Your job is to bridge that gap before the contract is signed.</p>
+          </div>
+          <div class="card" style="flex: 1;">
+            <h3>Three Diagnostic Questions for Your Next Call</h3>
+            <ul class="bullet-list" style="margin-top: 4px;">
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">1.</span><div>Have you asked the client what success looks like in business terms?</div></li>
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">2.</span><div>Have you defined and agreed a measurable baseline?</div></li>
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">3.</span><div>Have you explored a milestone or gain-sharing structure alongside the T&M proposal?</div></li>
+            </ul>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card blue-border" style="flex: 1;">
+            <h3>Rethinking What We're Selling</h3>
+            <p style="margin-bottom: 10px;">EPAM's strength has always been the brilliance and deep expertise of our engineers. That was the product. <strong style="color: var(--text);">AI commoditizes that.</strong> When any team with the right tools can produce working code at speed, raw engineering talent stops being the differentiator.</p>
+            <p>The pivot: stop selling expertise and start selling <strong style="color: var(--text);">outcomes and accountability.</strong> Clients don't actually want engineers — they want results they can report upward. We need to be the vendor who owns getting there, not the one who shows up and executes what they're told.</p>
+            <div style="margin-top: 10px; font-size: 13px; color: var(--blue);">→ The model shift in this deck isn't just commercial. It's a repositioning of what EPAM is.</div>
+          </div>
+          <div class="card orange-border" style="flex: 1;">
+            <h3>The Right Moment</h3>
+            <p style="margin-bottom: 12px;">This conversation cannot happen during a staffing discussion. It has to happen at a level above people managing headcount.</p>
+            <ul class="bullet-list">
+              <li><span class="dot" style="background: var(--orange);"></span><div>QBR / strategic planning cycle</div></li>
+              <li><span class="dot" style="background: var(--orange);"></span><div>Major program kick-off</div></li>
+              <li><span class="dot" style="background: var(--orange);"></span><div>Contract renewal or scope expansion</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 14 — INTERNAL OBJECTIONS
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Before the Client Conversation</span>
+        <h2 class="slide-title">The Objections That Stop AMs<br>Before They Say a Word</h2>
+        <p class="slide-subtitle">These aren't client objections. They're the internal fears that prevent the conversation from starting at all.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; flex: 1;">
+
+        <div class="objection-card" style="border-left: 3px solid var(--red);">
+          <div class="persona" style="color: var(--red);">😟 "Raising this will unsettle a relationship I've spent years building."</div>
+          <div class="response-text">This is the most common reason the conversation never happens — and it's usually wrong. Clients who are already asking "what are we getting for this?" are more unsettled by the current model than by a conversation about evolving it. The AM who raises it first is seen as a strategic partner. The AM who waits for the client to raise it is seen as a vendor defending the status quo. <strong style="color: var(--green);">The relationship risk runs in both directions. Inaction is not neutral.</strong></div>
+        </div>
+
+        <div class="objection-card" style="border-left: 3px solid var(--orange);">
+          <div class="persona" style="color: var(--orange);">😬 "If delivery misses the outcome, I'll be the one who gets blamed."</div>
+          <div class="response-text">In a well-structured hybrid deal, EPAM's downside is not earning the outcome bonus — not losing base fees, not losing the account, and not a finger pointed at the AM. The AM's job is to structure the deal correctly and loop in the right support. <strong style="color: var(--green);">The accountability for outcome delivery sits with the DM and the delivery team, with the AM as the commercial architect — not the scapegoat.</strong> This requires clarity on internal roles, which is a leadership decision (see slide 16).</div>
+        </div>
+
+        <div class="objection-card" style="border-left: 3px solid var(--yellow);">
+          <div class="persona" style="color: var(--yellow);">🤔 "I don't know how to have this conversation without sounding like I'm pitching something."</div>
+          <div class="response-text">The conversation doesn't start with a proposal. It starts with a diagnostic question: <em>"We've been working together for X years. As you think about what you're getting from that investment — what would 'this is working really well' actually look like for you?"</em> That question surfaces the client's outcome language, which becomes the basis for the commercial conversation. <strong style="color: var(--green);">You're not pitching a model. You're listening for what the client already wants — and offering a structure that delivers it.</strong></div>
+        </div>
+
+        <div class="objection-card" style="border-left: 3px solid var(--blue);">
+          <div class="persona" style="color: var(--blue);">💭 "I don't know enough about these models to answer the client's questions."</div>
+          <div class="response-text">You don't need to be a commercial architect to open the conversation. You need to know: (1) the difference between output, capacity, and outcome models, (2) which structure fits this engagement, and (3) who to bring in when the client says yes. The first two this deck covers. The third requires deal support infrastructure — which is a leadership decision. <strong style="color: var(--green);">Your job is to open the door. You don't have to build the room alone.</strong></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 15a — CLIENT OBJECTIONS (COMMERCIAL)
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Once the Conversation Starts · 1 of 2</span>
+        <h2 class="slide-title">Client Objections You'll Hear — and What to Say</h2>
+        <p class="slide-subtitle">Commercial and contractual objections</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; flex: 1;">
+      <div class="objection-card">
+        <div class="persona" style="color: var(--red);">⚖️ Legal &amp; Procurement</div>
+        <div class="objection-text">"Our legal team will never sign a non-standard contract structure."</div>
+        <div class="response-text"><strong>Response:</strong> They will flag it — that's their job. The answer is standard outcome-contract templates: pre-negotiated positions on IP allocation, measurement audit rights, attribution methodology, and outcome definition schedules. EPAM needs outcome-contract templates the way it has T&M templates. If those don't exist yet, that's the business case to bring to practice leadership.</div>
+      </div>
+      <div class="objection-card">
+        <div class="persona" style="color: var(--orange);">📉 Risk-Conscious Client</div>
+        <div class="objection-text">"What happens when EPAM misses the outcome target?"</div>
+        <div class="response-text"><strong>Response:</strong> In a well-structured hybrid, EPAM does not receive the outcome bonus — and the client has paid base fees at market rates for work delivered. <strong>No clawbacks on base fees.</strong> The vendor's downside is "we don't earn the premium." If base fees are at risk on an outcome miss, that is a structuring error, not a feature. Every AM should be able to give this answer before the contract is signed.</div>
+      </div>
+      <div class="objection-card">
+        <div class="persona" style="color: var(--text-dim);">💰 CFO / Procurement (Rate Squeeze)</div>
+        <div class="objection-text">"We can get this done for less if we just negotiate your rates down."</div>
+        <div class="response-text"><strong>Response:</strong> Rate optimization saves unit cost — it does nothing about total cost of ownership: the EM hours spent directing our backlog, rework from insufficient accountability, knowledge loss when engineers rotate. A managed capability model may have a higher rate card and a <strong>lower total cost</strong>. We'd be happy to model that comparison. Take this conversation to the CTO or CFO — not procurement.</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 15b — CLIENT OBJECTIONS (STAKEHOLDER/AI)
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Once the Conversation Starts · 2 of 2</span>
+        <h2 class="slide-title">Client Objections You'll Hear — and What to Say</h2>
+        <p class="slide-subtitle">Stakeholder control and AI-specific objections</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; flex: 1;">
+      <div class="objection-card">
+        <div class="persona" style="color: var(--yellow);">🏢 Engineering Manager (Staff Aug Accounts)</div>
+        <div class="objection-text">"I need to stay in control of what my team works on."</div>
+        <div class="response-text"><strong>Response:</strong> You keep strategic control — you still define priorities and outcomes. What changes is that you no longer direct the day-to-day execution of our work. We manage ourselves to the outcomes you set. That frees you from 30% of your week that's currently spent directing our backlog.</div>
+      </div>
+      <div class="objection-card">
+        <div class="persona" style="color: var(--blue);">🔍 Skeptical CTO</div>
+        <div class="objection-text">"Is EPAM actually set up to manage outcome risk?"</div>
+        <div class="response-text"><strong>Response:</strong> Partially, honestly. We have the delivery tooling (AI/Run), engineering capability, and measurement infrastructure to support outcome commitments. What's still developing: internal governance for gain-sharing contracts and outcome tracking. The DMs already running outcome-oriented sprints — defining success in business result terms, using telemetry to demonstrate progress — are ahead of the curve. That's the operating model we're building toward.</div>
+      </div>
+      <div class="objection-card">
+        <div class="persona" style="color: var(--yellow);">🤖 Procurement (AI Seniority Argument)</div>
+        <div class="objection-text">"If AI is doing most of the work now, why are we paying senior engineer rates? Surely junior people with AI tools are equivalent."</div>
+        <div class="response-text"><strong>Response:</strong> This gets the causality backwards. AI doesn't reduce the need for seniority — it amplifies it. A junior engineer with AI tools produces faster junior-quality output. A senior engineer with AI tools produces faster senior-quality output, makes better architectural decisions, catches failure modes earlier, and directs the AI toward the right problem. <strong style="color: var(--green);">The value of senior engineers was never their typing speed. It was always their judgment. AI hasn't automated judgment.</strong> Escalate this conversation to engineering leadership, who live with the consequences of seniority decisions. Procurement does not.</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 15 — AI ENABLES THE MODEL
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">The AI Advantage</span>
+        <h2 class="slide-title">AI Isn't Just Compressing Delivery —<br>It's Enabling the Model That Replaces T&M</h2>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-3" style="margin-bottom: 20px;">
+        <div class="card teal-border">
+          <div style="font-size: 28px; margin-bottom: 10px;">🎯</div>
+          <h3>Better Estimation</h3>
+          <p>AI-assisted scoping tools analyze historical delivery data to produce accurate estimates. The "unknown unknowns" that made outcome-based contracts feel dangerous become manageable. Commit with confidence, not intuition.</p>
+        </div>
+        <div class="card blue-border">
+          <div style="font-size: 28px; margin-bottom: 10px;">⚡</div>
+          <h3>Compressed Delivery = Margin</h3>
+          <p>Under T&M, AI efficiency transfers to the client. Under output-based pricing, compressed delivery cost becomes our margin. Efficiency shows up as profit, not discounted invoices.</p>
+        </div>
+        <div class="card green-border">
+          <div style="font-size: 28px; margin-bottom: 10px;">📊</div>
+          <h3>EPAM AI/Run: The Measurement Capability</h3>
+          <p>AI/Run is not a packaged product you can deploy on any engagement tomorrow. It is a body of measurement knowledge — linking tool usage to delivery velocity, time-to-market gains, and task completion rates — held by a small number of practitioners we are actively scaling. When you have access to that expertise, it provides credible attribution. Know who to call. Bring them in early.</p>
+        </div>
+      </div>
+      <div class="quote-block">
+        <p>Every client will ask: <strong style="color: var(--text);">"How will we know if the outcome was achieved — and that it was because of your work?"</strong> EPAM has practitioners who've answered this question — and AI/Run represents their accumulated approach. The honest reality internally: this expertise is not yet universally available. <strong style="color: var(--text);">Know who in EPAM has run measurement-backed outcome engagements before. Get them involved before the SOW is signed, not after delivery misses.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 6 — THREE MODELS: NOT THE SAME THING
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Commercial Model Taxonomy</span>
+        <h2 class="slide-title">Fixed-Price, Output, and Outcome<br>Are Not the Same Thing</h2>
+        <p class="slide-subtitle">Conflating them produces bad contracts. Know the distinction before you propose.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 20px;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 14%;"></th>
+            <th style="width: 18%;">Fixed-Price</th>
+            <th style="width: 20%;">Output-Based</th>
+            <th style="width: 24%;">Capacity-Based</th>
+            <th style="width: 24%;">Outcome-Based</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Unit of value</strong></td>
+            <td>Defined scope</td>
+            <td>Deliverable produced</td>
+            <td>Guaranteed throughput</td>
+            <td>Business result achieved</td>
+          </tr>
+          <tr>
+            <td><strong>Example</strong></td>
+            <td>App rebuild at fixed price</td>
+            <td>Data pipeline deployed</td>
+            <td>Team delivering ≥X deploys/sprint at ≤Y defect rate, $95K/month</td>
+            <td>15% reduction in customer churn</td>
+          </tr>
+          <tr>
+            <td><strong>Vendor controls</strong></td>
+            <td>Directly</td>
+            <td>Directly</td>
+            <td>Directly (team composition &amp; process)</td>
+            <td>Partially</td>
+          </tr>
+          <tr>
+            <td><strong>Measurement</strong></td>
+            <td>Scope completion</td>
+            <td>Relatively simple</td>
+            <td>DORA metrics, throughput SLAs</td>
+            <td>Requires instrumentation</td>
+          </tr>
+          <tr>
+            <td><strong>Risk absorbed</strong></td>
+            <td>Overrun risk</td>
+            <td>Production risk</td>
+            <td>Capacity &amp; throughput risk</td>
+            <td>Business risk (shared)</td>
+          </tr>
+          <tr>
+            <td><strong>Optional add-on</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td>Penalty/bonus bands on throughput or quality targets</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Common trap</strong></td>
+            <td>Change order fights</td>
+            <td>Conflating with outcomes</td>
+            <td>Throughput targets must be meaningful, not just "stay busy"</td>
+            <td>Attribution disputes</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="warning-banner" style="margin-top: 20px;">
+        <span class="icon">💡</span>
+        <p><strong>The recommended path:</strong> Start with output-based or capacity-based models. Graduate to outcome-based as trust and measurement infrastructure develop. Capacity-based is often the natural evolution from staff augmentation — same team shape, different commercial logic. A client is ready for outcome-based when they can state a measurable baseline, track it, and agree on attribution methodology before work begins.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 7 — FIVE PRICING MECHANISMS
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Pricing Mechanisms</span>
+        <h2 class="slide-title">Five Ways to Price Without Billing the Hour</h2>
+        <p class="slide-subtitle">Each serves a different engagement type, relationship stage, and risk profile.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 16px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>How It Works</th>
+            <th>Best For</th>
+            <th>Watch Out For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Milestone Payments</strong> <span class="badge badge-green" style="display: block; margin-top: 4px;">Easiest entry</span></td>
+            <td>Payment tranches released on verified deliverable completion</td>
+            <td>Defined-scope projects; new client relationships</td>
+            <td>Milestone definition must be crisp — vague milestones = disputes</td>
+          </tr>
+          <tr>
+            <td><strong>Gain-Sharing</strong> <span class="badge badge-teal" style="display: block; margin-top: 4px;">Purest outcome</span></td>
+            <td>Base fee + % of quantified savings or revenue gains (20–40% for 12–24 months)</td>
+            <td>Established accounts; clear attribution possible; high delivery confidence</td>
+            <td>Requires contractually agreed baseline before work starts</td>
+          </tr>
+          <tr>
+            <td><strong>Subscription Retainer</strong> <span class="badge badge-blue" style="display: block; margin-top: 4px;">Capacity-as-a-Service</span></td>
+            <td>Fixed monthly fee for defined team capability and throughput SLAs</td>
+            <td>Long-running platform teams; continuous product development</td>
+            <td>Scope must have defined boundaries; re-scoping rights needed</td>
+          </tr>
+          <tr>
+            <td><strong>SLA-Linked</strong></td>
+            <td>Base fee ± performance against uptime, response, quality metrics</td>
+            <td>Managed services; operations; platform support</td>
+            <td>SLA targets must reflect genuine value, not just status quo maintenance</td>
+          </tr>
+          <tr>
+            <td><strong>Hybrid T&M + Bonus</strong> <span class="badge badge-orange" style="display: block; margin-top: 4px;">Best on-ramp</span></td>
+            <td>T&M-equivalent base covers costs; outcome bonus (typically 10–20%) on verified targets</td>
+            <td>Existing relationships; first outcome-linked engagement</td>
+            <td>Base fees must not be at risk on outcome miss — that's a structuring error</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 8 — WORKED EXAMPLES
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Pricing Mechanisms</span>
+        <h2 class="slide-title">What These Look Like in Practice</h2>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 16px; overflow: hidden;">
+      <div class="scrollable">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+
+          <div class="card teal-border">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <h3>Milestone — Data Migration</h3>
+              <span class="badge badge-teal">$900K engagement</span>
+            </div>
+            <p style="font-size: 13px; margin-bottom: 8px;">Global FinServ firm migrating legacy data warehouse. Four payment tranches: 20% on signed architecture · 30% on warehouse decommissioned + data validated · 30% on BI layer accepted by 3 pilot BUs · 20% on 90-day SLA.</p>
+            <p style="font-size: 12px; color: var(--teal);">Client pays for verified progress. EPAM absorbs per-phase delivery risk.</p>
+          </div>
+
+          <div class="card blue-border">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <h3>Gain-Sharing — Recommendation Engine</h3>
+              <span class="badge badge-blue">$580K vs $280K T&M</span>
+            </div>
+            <p style="font-size: 13px; margin-bottom: 8px;">E-commerce retailer: current recommendation revenue $4.2M vs $6M benchmark. EPAM builds at reduced retainer ($180K) + 20% of revenue lift above $4.2M baseline for 12 months. External event clause included.</p>
+            <p style="font-size: 12px; color: var(--blue);">If engine drives $2M lift → EPAM earns $400K gain-share = $580K total.</p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--green);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <h3>Subscription — SaaS Product Team</h3>
+              <span class="badge badge-green">$95K/month</span>
+            </div>
+            <p style="font-size: 13px; margin-bottom: 8px;">Series C SaaS company. 4 senior engineers + staff tech lead + AI tooling. Operates against product roadmap with quarterly re-scoping right. Throughput tracked via DORA metrics vs agreed baselines.</p>
+            <p style="font-size: 12px; color: var(--green);">Client buys a capability, not headcount. Predictable cost; flexible scope.</p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--yellow);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <h3>SLA-Linked — Healthcare Platform Ops</h3>
+              <span class="badge" style="background: rgba(251,191,36,0.12); color: var(--yellow);">$65K/month base</span>
+            </div>
+            <p style="font-size: 13px; margin-bottom: 8px;">Patient-facing HIPAA app. Targets: 99.9% uptime, P1 response &lt;15 min, bi-weekly deploys. Penalty: 2% reduction per 0.1% uptime miss. Bonus: 5% quarterly if sustaining 99.95%+ for 6 months.</p>
+            <p style="font-size: 12px; color: var(--yellow);">Bounded risk with real upside. Penalizes negligence; rewards excellence.</p>
+          </div>
+
+          <div class="card orange-border" style="grid-column: 1 / -1;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <h3>Hybrid T&M + Outcome Bonus — Legacy Modernization</h3>
+              <span class="badge badge-orange">$420K floor · $63K bonus</span>
+            </div>
+            <p style="font-size: 13px; margin-bottom: 8px;">Regional bank modernizing loan origination system. T&M floor at $420K covers delivery costs with modest margin. 15% bonus ($63K) if system hits targets 90 days post go-live: &lt;2 sec transaction processing, zero P1s, clean data cutover. No clawbacks on base.</p>
+            <p style="font-size: 12px; color: var(--orange);">EPAM's downside: standard rates. EPAM's upside: $483K. Client's protection: paid for delivered work, not promises.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE — TOKENOMICS
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Tokenomics</span>
+        <h2 class="slide-title">Token Economics: The Question Every Deal Will Raise</h2>
+        <p class="slide-subtitle">No universal answer — but leaving it unaddressed is a deal risk.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-3" style="margin-bottom: 20px;">
+        <div class="card orange-border">
+          <div style="font-size: 24px; margin-bottom: 10px;">💳</div>
+          <h3>Who Pays?</h3>
+          <p>This is a commercial question and there is no single right answer. Token costs can be client-absorbed (pass-through), EPAM-absorbed (built into pricing), or shared. The model matters under outcome-based contracts — absorbing token costs on a gain-sharing deal is a margin bet that needs to be modeled explicitly.</p>
+          <div style="margin-top: 10px; font-size: 12px; color: var(--orange);">Document it in the contract. Do not leave it implicit.</div>
+        </div>
+        <div class="card blue-border">
+          <div style="font-size: 24px; margin-bottom: 10px;">📈</div>
+          <h3>Who's Watching?</h3>
+          <p>Token spend is not static — it scales with usage, model choice, prompt design, and task volume. Without monitoring, costs erode margin silently. Someone needs to own the usage dashboard: tracking consumption against budget, flagging anomalies, and escalating before cost becomes a problem.</p>
+          <div style="margin-top: 10px; font-size: 12px; color: var(--blue);">Treat token budgets like infrastructure costs — not a surprise at invoice time.</div>
+        </div>
+        <div class="card teal-border">
+          <div style="font-size: 24px; margin-bottom: 10px;">⚙️</div>
+          <h3>EPAM's Governance Responsibility</h3>
+          <p>Regardless of who pays, EPAM needs internal standards for efficient, value-delivering token use. Model selection, prompt engineering, workflow design, and caching strategies can vary costs by 10x for equivalent outputs. Efficiency is a delivery discipline. We need practices for it — and clients will ask to see them.</p>
+          <div style="margin-top: 10px; font-size: 12px; color: var(--teal);">This is an EPAM maturity gap we need to close.</div>
+        </div>
+      </div>
+      <div class="warning-banner">
+        <span class="icon">⚠️</span>
+        <p>Clients paying for AI tooling — or who suspect they are — will ask. AMs who can't answer the tokenomics question will lose credibility at a critical commercial moment. <strong>Have a position before the conversation starts. Bring it up first if the engagement uses AI at scale.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 9 — STORY POINTS FAIL
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Measurement Problem</span>
+        <h2 class="slide-title">Story Points Are Not the Answer</h2>
+        <p class="slide-subtitle">They were designed for internal planning. They fail as a commercial unit.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 20px;">
+      <div class="cols-2" style="align-items: stretch; gap: 20px; margin-bottom: 14px;">
+        <div>
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;">Four Reasons Story Points Fail Commercially</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="card" style="border-left: 3px solid var(--red); border-top: none; border-radius: 0 8px 8px 0; padding: 14px 16px;">
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-size: 20px; font-weight: 900; color: var(--red); line-height: 1; flex-shrink: 0;">01</span>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px;">Measure effort, not value</div>
+                  <div style="font-size: 12px; color: var(--text-dim);">A 1-pt config change unblocking $5M revenue ≠ an 8-pt feature nobody uses.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="border-left: 3px solid var(--red); border-top: none; border-radius: 0 8px 8px 0; padding: 14px 16px;">
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-size: 20px; font-weight: 900; color: var(--red); line-height: 1; flex-shrink: 0;">02</span>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px;">Team-relative by design</div>
+                  <div style="font-size: 12px; color: var(--text-dim);">A "5" in one team is a "3" in another. No exchange rate. No stable cross-contract answer.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="border-left: 3px solid var(--red); border-top: none; border-radius: 0 8px 8px 0; padding: 14px 16px;">
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-size: 20px; font-weight: 900; color: var(--red); line-height: 1; flex-shrink: 0;">03</span>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px;">Gameable under commercial pressure</div>
+                  <div style="font-size: 12px; color: var(--text-dim);">Teams inflate estimates to show velocity. Clients have noticed. It erodes trust.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="border-left: 3px solid var(--red); border-top: none; border-radius: 0 8px 8px 0; padding: 14px 16px;">
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-size: 20px; font-weight: 900; color: var(--red); line-height: 1; flex-shrink: 0;">04</span>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px;">No business translation</div>
+                  <div style="font-size: 12px; color: var(--text-dim);">No CFO has ever reported to a board that their initiative delivered 847 story points.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;">The Key Insight</div>
+          <div class="card teal-border" style="margin-bottom: 14px;">
+            <p style="font-size: 15px; line-height: 1.6; color: var(--text-dim);">There is no <em>perfect</em> commercial unit for complex software delivery.</p>
+            <div style="font-size: 18px; font-weight: 700; color: var(--teal); margin: 12px 0; line-height: 1.3;">Precise imperfect units beat vague perfect ones.</div>
+            <p style="font-size: 13px; color: var(--text-dim);">The goal is not to find perfection. It is to find something <strong style="color: var(--text);">better than hours and points</strong> — and several options exist.</p>
+          </div>
+          <div class="warning-banner" style="flex: 1;">
+            <span class="icon">🎯</span>
+            <p>If you propose a commercial engagement structured around story point throughput, <strong>you're building on sand.</strong> The next slide shows what to use instead.</p>
+          </div>
+        </div>
+      </div>
+      <div style="background: rgba(74,158,255,0.07); border: 1px solid rgba(74,158,255,0.25); border-radius: 8px; padding: 14px 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 7px;">The Underlying Problem With Point 01</div>
+        <p style="font-size: 13px; color: var(--text-dim); line-height: 1.5; margin: 0;">Story points were designed as a measure of <em>relative effort and complexity</em> — not hours. That's the textbook definition. In practice, most teams use them as a disguised hour estimate. But even when used correctly, <strong style="color: var(--text);">story points only tell you how hard something is to build — not whether it should be built, or what it's worth.</strong> Business value is what clients are paying for. Story points were never designed to bridge that gap — and they can't. We need to sell value, not effort.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 10 — BETTER MEASUREMENT ALTERNATIVES
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Measurement Problem</span>
+        <h2 class="slide-title">Five Better Measurement Approaches</h2>
+        <p class="slide-subtitle">Each works for different engagement types. Know when to use which.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 20px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Approach</th>
+            <th>How It Works</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Functional Decomposition</strong> <span class="badge badge-teal" style="display: block; margin-top: 4px;">Recommended</span></td>
+            <td>Define working software capabilities with acceptance criteria. Payment triggers on acceptance — not hours, not points. "Auth module in production." "Payment integration processing transactions."</td>
+            <td>Project delivery; milestone-based contracts; any work with definable "done" states</td>
+          </tr>
+          <tr>
+            <td><strong>DORA Metrics</strong> <span class="badge badge-blue" style="display: block; margin-top: 4px;">For retainers</span></td>
+            <td>Deployment frequency, lead time, change failure rate, MTTR — objective, automatable, impossible to game without changing real behavior. Ties retainer value to engineering health.</td>
+            <td>Subscription retainers; team-as-a-service; long-running platform teams</td>
+          </tr>
+          <tr>
+            <td><strong>Value Stream Milestones</strong></td>
+            <td>Define milestones that represent genuine business capabilities the client can act on — not technical checkpoints. "API enabling X integration." "BI layer adopted by Y teams."</td>
+            <td>Platform builds; modernization programs; multi-phase delivery</td>
+          </tr>
+          <tr>
+            <td><strong>Acceptance-Criteria Delivery</strong></td>
+            <td>Each output defined by what it must do to be accepted, not how long it took to build. The criteria become the contract. Shifts from "how much effort?" to "does this work as agreed?"</td>
+            <td>Managed services; AI-assisted delivery; any repeatable output type</td>
+          </tr>
+          <tr>
+            <td><strong>Outcome Proxies</strong></td>
+            <td>When true business outcomes are distal or hard to attribute, agree on leading indicators. "Feature adoption &gt;40% within 30 days." "API volume reaches X by week 8." Measurable and attributable.</td>
+            <td>Transition to outcome-based; early gain-sharing engagements; pre-instrumentation phase</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="quote-block" style="margin-top: 16px;">
+        <p>"Invest at the front end defining what success looks like — or spend the same time at the back end arguing about whether you got there. Most clients choose the front end when it's framed that way."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 11 — EVOLVING STAFF AUGMENTATION
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Staff Augmentation</span>
+        <h2 class="slide-title">Evolving the Model That Pays Most of Our Bills</h2>
+        <p class="slide-subtitle">The commercial model cannot evolve until the operating model does. Move one level at a time.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="level-row">
+        <div class="level-step">
+          <div class="lnum">Level 1</div>
+          <h4>Pure Augmentation</h4>
+          <p>Individual contributors, rate card, client-directed. EPAM accountability: show up. Revenue risk: headcount cut when AI improves productivity.</p>
+          <div style="margin-top: 10px;"><span class="badge badge-red">High risk</span></div>
+        </div>
+        <div class="level-arrow">›</div>
+        <div class="level-step">
+          <div class="lnum">Level 2</div>
+          <h4>Embedded Squad</h4>
+          <p>Cohesive EPAM team operating as a unit. Still client-directed, but harder to reduce piecemeal. Retention model, not yet a value model.</p>
+          <div style="margin-top: 10px;"><span class="badge badge-orange">Stable</span></div>
+        </div>
+        <div class="level-arrow">›</div>
+        <div class="level-step highlight">
+          <div class="lnum">Level 3 ★</div>
+          <h4>Managed Capability</h4>
+          <p>EPAM owns a defined domain. Client sets outcomes; EPAM decides how to staff and deliver. SLAs, DORA retainers, per-unit pricing become viable.</p>
+          <div style="margin-top: 10px;"><span class="badge badge-teal">Inflection point</span></div>
+        </div>
+        <div class="level-arrow">›</div>
+        <div class="level-step">
+          <div class="lnum">Level 4</div>
+          <h4>Team-as-a-Service</h4>
+          <p>Subscription retainer. Client buys capability, not headcount. EPAM manages staffing internally. Rate card disappears. Quarterly re-scoping.</p>
+          <div style="margin-top: 10px;"><span class="badge badge-blue">High value</span></div>
+        </div>
+        <div class="level-arrow">›</div>
+        <div class="level-step">
+          <div class="lnum">Level 5</div>
+          <h4>Outcome-Linked Capacity</h4>
+          <p>Retainer base + gain-sharing on domain-attributable business metrics. Requires Level 3 and well-instrumented domain with clear attribution.</p>
+          <div style="margin-top: 10px;"><span class="badge badge-green">Strategic</span></div>
+        </div>
+      </div>
+      <div class="cols-2" style="gap: 14px; margin-top: 20px; align-items: stretch;">
+        <div class="warning-banner" style="margin: 0;">
+          <span class="icon">📍</span>
+          <p><strong>Most EPAM accounts are at Level 1 or 2.</strong> The goal is not to jump to Level 5. It is to move one level — deliberately, on a specific renewal or expansion. The prerequisite for any evolution: <strong>EPAM must own a defined domain, not just provide bodies within someone else's domain.</strong></p>
+        </div>
+        <div style="background: rgba(0,194,168,0.07); border: 1px solid rgba(0,194,168,0.25); border-radius: 8px; padding: 14px 20px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 7px;">A Behavior That Must Change</div>
+          <p style="font-size: 13px; color: var(--text-dim); line-height: 1.5; margin: 0;">EPAM's EngX.AI team has a catalogue of AI coaching, adoption, and enablement offerings with defined scopes, deliverables, and outcomes — built to be sold as fixed-fee engagements. Selling this work as staff augmentation caps the value we deliver, limits our strategic positioning, and reinforces the staffing agency mindset this deck is asking you to leave behind. <strong style="color: var(--text);">If EngX.AI work is on your account as a rate card, that is the behavior that needs to change. We are a consultancy. Sell like one.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 12 — WHAT'S IN IT FOR THE CLIENT
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Staff Augmentation</span>
+        <h2 class="slide-title">Why Would the Client Give Up Control?</h2>
+        <p class="slide-subtitle">They like staff aug. They have control. They can squeeze our rates. The value prop has to land by stakeholder.</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 20px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1;">
+        <div class="card teal-border">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+            <span style="font-size: 18px;">👩‍💻</span>
+            <h3 style="margin: 0;">Engineering Manager</h3>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 8px; color: var(--text-dim);"><em>Likes:</em> control over task assignment, visibility into what the team does.</p>
+          <p style="font-size: 13px; color: var(--text-dim);"><strong style="color: var(--text);">Reality:</strong> spending 30% of their week directing vendor backlogs instead of higher-order work.</p>
+          <div style="margin-top: 10px; font-size: 13px; color: var(--teal);">→ "We manage ourselves. You set outcomes and hold us accountable. Get your time back."</div>
+        </div>
+        <div class="card blue-border">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+            <span style="font-size: 18px;">🏗</span>
+            <h3 style="margin: 0;">CTO / VP Engineering</h3>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 8px; color: var(--text-dim);"><em>Problem:</em> zero accountability structure in staff aug. When something fails, vendor says "we did what you asked."</p>
+          <p style="font-size: 13px; color: var(--text-dim);"><strong style="color: var(--text);">Reality:</strong> the client owns all delivery risk. Every bad outcome traces back to a client decision.</p>
+          <div style="margin-top: 10px; font-size: 13px; color: var(--blue);">→ "We own this domain. We're accountable for it performing."</div>
+        </div>
+        <div class="card green-border">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+            <span style="font-size: 18px;">📊</span>
+            <h3 style="margin: 0;">CFO</h3>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 8px; color: var(--text-dim);"><em>Problem:</em> variable costs, rate negotiation fights, hard to justify to leadership.</p>
+          <p style="font-size: 13px; color: var(--text-dim;"><strong style="color: var(--text);">Want:</strong> predictable monthly number tied to defined capability and measurable outputs.</p>
+          <div style="margin-top: 10px; font-size: 13px; color: var(--green);">→ Subscription model = fixed spend, reportable outputs, no headcount counting.</div>
+        </div>
+        <div class="card orange-border">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+            <span style="font-size: 18px;">⚖️</span>
+            <h3 style="margin: 0;">Procurement</h3>
+          </div>
+          <p style="font-size: 13px; margin-bottom: 8px; color: var(--text-dim);">Loves squeezing rates. But rate optimization saves unit cost — it does nothing about total cost of ownership: EM hours, rework, knowledge loss.</p>
+          <p style="font-size: 13px; color: var(--text-dim);"><strong style="color: var(--text);">Key:</strong> this argument lands with CFOs and CTOs — not procurement. Find the right sponsor first.</p>
+          <div style="margin-top: 10px; font-size: 13px; color: var(--orange);">→ Higher rate card, lower total cost. Don't make this argument to procurement.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 13 — THE AI THREAT TO STAFF AUG CONTROL
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <span class="section-tag">Staff Augmentation</span>
+        <h2 class="slide-title">The "Control" Clients Value<br>Is Becoming Less Valuable</h2>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-2" style="flex: 1; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="card orange-border">
+            <h3>What Staff Aug Control Actually Is</h3>
+            <p>In a staff aug relationship, what the client controls is <strong style="color: var(--text);">task assignment to human engineers</strong>. They decide what gets built, in what order, by whom.</p>
+            <p style="margin-top: 10px;">As AI takes over more of the execution layer — writing code, running tests, managing deployments — <strong style="color: var(--orange);">directing individual human capacity becomes less valuable</strong>. The clients already using AI tools internally are sensing this shift.</p>
+          </div>
+          <div class="card teal-border">
+            <h3>The Reframe That Works</h3>
+            <div class="quote-block" style="margin-top: 8px;">
+              <p>"The control staff augmentation gives you is control over activity. We're offering accountability for outcomes. You define what success looks like. We own getting there. That's a different kind of control — and it's worth more."</p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="card blue-border">
+            <h3>AM Checklist for Existing Staff Aug Accounts</h3>
+            <ul class="bullet-list" style="margin-top: 4px;">
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">1.</span><div><strong>What does EPAM de facto own?</strong> Even in pure staff aug, teams informally own domains. Name it.</div></li>
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">2.</span><div><strong>Is there a natural domain boundary?</strong> Data platform, QA, DevOps, a product area.</div></li>
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">3.</span><div><strong>Can that domain produce measurable outputs?</strong> Deployment frequency, defect rate, pipeline uptime.</div></li>
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">4.</span><div><strong>Who benefits from accountability clarity?</strong> Find them — EM, CTO, or CFO.</div></li>
+              <li><span style="color: var(--teal); font-weight: 700; flex-shrink: 0;">5.</span><div><strong>Is the relationship at the right trust level?</strong> If not, what needs to happen first?</div></li>
+            </ul>
+          </div>
+          <div class="warning-banner">
+            <span class="icon">🎯</span>
+            <p>The accounts with the <strong>highest engineer counts and longest tenure</strong> are simultaneously the most valuable candidates for evolution and the most at risk of client-driven headcount reduction. Do the math before they do.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 16 — LEADERSHIP DECISIONS
+  ══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header" style="padding-top: 16px; padding-bottom: 8px;">
+      <div>
+        <span class="section-tag" style="margin-bottom: 8px;">Leadership Accountability</span>
+        <h2 class="slide-title" style="font-size: clamp(18px, 1.8vw, 26px); margin-bottom: 4px;">Organizational Challenges That Sit With Leadership — Not With AMs and DMs</h2>
+        <p class="slide-subtitle" style="font-size: 13px; margin-top: 4px;">The commercial framework in this deck is not new, but the structural enablers need to be created...</p>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 8px; padding-bottom: 16px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; align-items: stretch;">
+
+        <div class="card orange-border" style="padding: 12px 14px; display: flex; flex-direction: column;">
+          <div style="font-size: 18px; margin-bottom: 4px;">💰</div>
+          <h3 style="font-size: 11px; margin-bottom: 4px;">1. Compensation Alignment</h3>
+          <p style="font-size: 12px; line-height: 1.35; margin-bottom: 4px;">How do outcome bonuses flow through AM quota and compensation? What is the credit timing when a gain-sharing payment arrives in month 15 of a 12-month engagement?</p>
+          <p style="font-size: 12px; line-height: 1.35;">Until this is resolved, asking AMs to propose outcome-based deals means asking them to absorb personal financial risk for organizational benefit.</p>
+          <div style="margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border);">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;">Decision owner</div>
+            <div style="font-size: 11px; color: var(--orange);">Global Business + FP&amp;A</div>
+          </div>
+        </div>
+
+        <div class="card blue-border" style="padding: 12px 14px; display: flex; flex-direction: column;">
+          <div style="font-size: 18px; margin-bottom: 4px;">📉</div>
+          <h3 style="font-size: 11px; margin-bottom: 4px;">2. Transition Period Revenue Model</h3>
+          <p style="font-size: 12px; line-height: 1.35; margin-bottom: 4px;">Most accounts are at Level 1 or 2 today. Moving to Level 3 or higher takes 12–18 months of trust-building and measurement infrastructure.</p>
+          <p style="font-size: 12px; line-height: 1.35;">What does revenue look like during that window? How do we forecast? What protection exists for AMs whose accounts are mid-transition at year-end?</p>
+          <div style="margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border);">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;">Decision owner</div>
+            <div style="font-size: 11px; color: var(--blue);">Global Business + FP&amp;A</div>
+          </div>
+        </div>
+
+        <div class="card teal-border" style="padding: 12px 14px; display: flex; flex-direction: column;">
+          <div style="font-size: 18px; margin-bottom: 4px;">🎯</div>
+          <h3 style="font-size: 11px; margin-bottom: 4px;">3. Account Prioritization</h3>
+          <p style="font-size: 12px; line-height: 1.35; margin-bottom: 4px;">Which accounts in this BU are first-mover candidates? Criteria: relationship maturity, client readiness, domain ownership, delivery confidence.</p>
+          <p style="font-size: 12px; line-height: 1.35;">Without a prioritized list, every AM waits for someone else to go first. With one, the path from this QBR to a live pilot is a three-month conversation, not an indefinite aspiration.</p>
+          <div style="margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border);">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;">Decision owner</div>
+            <div style="font-size: 11px; color: var(--teal);">BU Head + Delivery Head</div>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--yellow); padding: 12px 14px; display: flex; flex-direction: column;">
+          <div style="font-size: 18px; margin-bottom: 4px;">🏛</div>
+          <h3 style="font-size: 11px; margin-bottom: 4px;">4. Deal Support Infrastructure</h3>
+          <p style="font-size: 12px; line-height: 1.35; margin-bottom: 4px;">Who approves a gain-sharing proposal before it goes to the client? Who owns outcome risk tracking on a live engagement? Where does an AM go when the client says yes and needs a contract template?</p>
+          <p style="font-size: 12px; line-height: 1.35;">Right now these questions have no named owner. A deal desk, a practice lead role, and standard contract templates are the minimum the field needs to move.</p>
+          <div style="margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border);">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;">Decision owner</div>
+            <div style="font-size: 11px; color: var(--yellow);">Global Business + Legal</div>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--green); padding: 12px 14px; display: flex; flex-direction: column; grid-column: 1 / -1;">
+          <div style="font-size: 18px; margin-bottom: 4px;">👥</div>
+          <h3 style="font-size: 11px; margin-bottom: 6px;">5. AI Practitioner Development &amp; Talent Strategy</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1;">
+            <div>
+              <p style="font-size: 12px; line-height: 1.35; margin-bottom: 6px;">The people who can design, deliver, and measure outcome-based AI-enabled engagements are few inside EPAM and in high demand. Growing this pool is not a training calendar problem — it is a deliberate staffing decision with real account trade-offs attached.</p>
+              <p style="font-size: 12px; line-height: 1.35; margin-bottom: 4px;"><strong style="color: var(--text);">Strategic rotation:</strong> Account teams and location leadership must be prepared to move their best AI-capable engineers into accounts operating at L3 AI SDLC Maturity — deliberately, even at short-term cost to other accounts. High-leverage projects are where practitioners at this level get made. Without intentional rotation decisions, the same small group gets spread thin and the pool stays flat.</p>
+            </div>
+            <div>
+              <p style="font-size: 12px; line-height: 1.35; margin-bottom: 4px;"><strong style="color: var(--text);">Bench as investment:</strong> Engineer bench time should default to structured AI upskilling, not reactive placement into any available seat. Every benched engineer is a capability development opportunity. Location heads must actively protect this time against short-term staffing pressure — or the investment never happens.</p>
+              <p style="font-size: 12px; line-height: 1.35; margin-bottom: 6px;"><strong style="color: var(--text);">Name the path:</strong> Define the development track from L1/L2 to L3 practitioner capability with named criteria and named sponsors. Without it, the pipeline does not grow on its own.</p>
+              <div style="padding-top: 6px; border-top: 1px solid var(--border);">
+                <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;">Decision owner</div>
+                <div style="font-size: 11px; color: var(--green);">Location Heads (Execution) + AI/Run Team (Enablement)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="warning-banner" style="margin-top: 10px;">
+        <span class="icon">📢</span>
+        <p>These are not gaps in the commercial model — the model is sound. These are <strong>organizational challenges that require leadership to solve.</strong> AMs and DMs can start conversations. They cannot restructure their own compensation, forecast their own transition windows, prioritize accounts without portfolio visibility, or manufacture AI expertise that doesn't exist yet. That work belongs here, in this room.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 17 — RECAP & CALL TO ACTION
+  ══════════════════════════════════════════════ -->
+  <div class="slide closing-slide">
+    <div class="slide-header" style="padding-top: 40px;">
+      <div>
+        <span class="section-tag">Recap</span>
+        <h2 class="slide-title" style="font-size: clamp(28px, 3vw, 42px);">Hourly Rates Are Dead.<br>What We Replace Them With Is Up to Us.</h2>
+      </div>
+    </div>
+    <div class="slide-inner" style="padding-top: 24px;">
+      <div class="cols-2" style="flex: 1; align-items: start; gap: 28px;">
+        <div>
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;">The Ten Things to Remember</div>
+          <ul class="bullet-list">
+            <li><span class="dot"></span><div>T&M punishes AI efficiency — structurally, not occasionally.</div></li>
+            <li><span class="dot"></span><div>Both project T&M and staff aug are exposed. The timeline differs; the exposure is the same.</div></li>
+            <li><span class="dot"></span><div>McKinsey, Accenture, and Wipro have already committed. We are behind.</div></li>
+            <li><span class="dot"></span><div>Start the conversation at QBR level, not staffing level.</div></li>
+            <li><span class="dot"></span><div>EPAM has measurement expertise to answer "how will we know?" — it's not a packaged product yet. Connect with the practitioners who've done it.</div></li>
+            <li><span class="dot"></span><div>Output ≠ outcome ≠ fixed-price. Know the distinction. It determines the contract.</div></li>
+            <li><span class="dot"></span><div>Token costs are a live question in every AI-enabled deal — know who pays, who monitors usage, and where EPAM stands before the client asks.</div></li>
+            <li><span class="dot"></span><div>Story points fail commercially. Use functional decomposition, DORA, or acceptance criteria instead.</div></li>
+            <li><span class="dot"></span><div>Staff aug evolves through domain ownership — move one level at a time.</div></li>
+            <li><span class="dot"></span><div>Each client stakeholder has a different reason to want this change. Find the right one.</div></li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="card teal-border">
+            <h3>Three Questions for Your Next Qualified Opportunity</h3>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-size: 22px; font-weight: 900; color: var(--teal); line-height: 1; flex-shrink: 0;">1</span>
+                <div style="font-size: 14px; color: var(--text-dim); line-height: 1.4;">Have you asked what success looks like in business terms — and how they'll know?</div>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-size: 22px; font-weight: 900; color: var(--teal); line-height: 1; flex-shrink: 0;">2</span>
+                <div style="font-size: 14px; color: var(--text-dim); line-height: 1.4;">Have you defined and agreed a measurable baseline before writing the SOW?</div>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-size: 22px; font-weight: 900; color: var(--teal); line-height: 1; flex-shrink: 0;">3</span>
+                <div style="font-size: 14px; color: var(--text-dim); line-height: 1.4;">Have you put a milestone or gain-sharing structure alongside the T&M proposal — and let the client choose?</div>
+              </div>
+            </div>
+          </div>
+          <div style="background: rgba(0,194,168,0.07); border: 1px solid rgba(0,194,168,0.25); border-radius: 8px; padding: 16px 20px;">
+            <div style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">If the answer is no to all three — <strong style="color: var(--text);">you've left value on the table. Both yours, and theirs.</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length; // auto-counts — no need to hardcode
+  let current = 0;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  function changeSlide(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault(); changeSlide(1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault(); changeSlide(-1);
+    } else if (e.key === 'Home') {
+      e.preventDefault(); goTo(0);
+    } else if (e.key === 'End') {
+      e.preventDefault(); goTo(total - 1);
+    }
+  });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) changeSlide(dx < 0 ? 1 : -1);
+  });
+
+  // Initialize progress bar
+  document.getElementById('progress').style.width = (1 / total * 100) + '%';
+</script>
+</body>
+</html>

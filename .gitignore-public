@@ -1,0 +1,31 @@
+# .gitignore-public
+# Defines what is EXCLUDED from the public framework repo.
+# publish.sh reads this file — add new private files/dirs here instead of editing the script.
+
+# Personal content
+library/
+external_library/
+drafts/
+
+# Personal data files
+LIBRARY_INDEX.md
+RESEARCH_INDEX.md
+EXTERNAL_LIBRARY_INDEX.md
+TOPICS.md
+
+# Personal voice profile
+.claude/skills/personal-voice/
+
+# Private personas (real people, company-specific)
+.claude/personas/private/
+
+# Internal tooling
+.codemie/
+
+# Claude Code memory (local instance)
+.claude/projects/
+
+# Publishing meta (not part of the framework)
+public-docs/
+.gitignore-public
+README.private.md
