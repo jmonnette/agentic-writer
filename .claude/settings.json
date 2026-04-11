@@ -4,6 +4,11 @@
     "allow": [
       "mcp__brave-search__brave_web_search",
 
+      "Bash(./setup.sh)",
+      "Bash(./publish.sh)",
+
+
+
       "Read(library/**)",
       "Read(drafts/**)",
       "Read(LIBRARY_INDEX.md)",
