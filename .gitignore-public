@@ -25,8 +25,9 @@ TOPICS.md
 # Claude Code memory (local instance)
 .claude/projects/
 
-# Private commands (not for public users)
+# Private commands and scripts (not for public users)
 .claude/commands/private/
+publish.sh
 
 # Publishing meta (not part of the framework)
 public-docs/
