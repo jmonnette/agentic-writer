@@ -177,8 +177,9 @@ Cross-reference with `personal-voice` skill:
 - **Voice**: Tone consistent from open to close?
 
 #### Micro-Refinements
-- **Rhythm**: Read aloud—does it flow?
-- **Emphasis**: Are italics/dashes used effectively?
+- **Rhythm**: Read aloud. Does it flow?
+- **Em Dashes**: Scan for em dashes (—) and remove every one. The author does not use them. Replace with commas, colons, or periods as the sentence requires. This is a hard rule.
+- **Emphasis**: Are italics used effectively?
 - **Punctuation**: Could any sentences benefit from different punctuation?
 - **Word Choice**: Any final opportunities for more precise language?
 
@@ -339,7 +340,8 @@ When editing involves judgment:
 7. Proofread
 8. Generate edit report
 9. Save final draft per the **FINAL.md versioning protocol** (see below)
-10. Report completion and stats
+10. **Word Count**: Run `python3 .claude/scripts/word_count.py [path/to/FINAL.md]` and include the verbatim output in your completion report. Never estimate word count manually.
+11. Report completion and stats
 
 ## FINAL.md Versioning Protocol
 

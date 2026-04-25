@@ -30,6 +30,7 @@ The Production Team transforms research into polished articles:
 - **Researcher**: Uses Brave Search MCP to perform deep-dive, recursive research. Checks `RESEARCH_INDEX.md` for prior coverage before searching. Outputs `research_pack.md`, then automatically triggers the Archivist (Research Mode) to index the completed research
 - **Ghostwriter**: The orchestrator. Uses POV Brief + Research Pack + `personal-voice` skill to draft outlines and manuscripts
 - **Critic**: The "Skeptic." Audits for logical fallacies, evidence gaps, and argument strength
+- **Fact-Checker**: The "Accuracy Guardian." Verifies factual claims against cited sources, checks statistics and quotes, and flags unsupported or inaccurate assertions before publication. Runs after Critic approves structure
 - **Persona Reviewer**: Evaluates drafts from specific audience perspectives to surface blind spots and test resonance
 - **Editor**: The "Polisher." Ensures brevity (15% reduction rule), mechanical perfection, and final style alignment
 - **Social Media Writer**: Writes platform-specific announcement posts (LinkedIn, X/Twitter) from a finished article. Invoked after `FINAL.md` is complete. Outputs `social_posts.md` to the article's draft subfolder
@@ -71,7 +72,14 @@ User adds a file to `/library` → Archivist and Stylist update the Index and St
 
 **Ghostwriter** revises based on critique
 
-### 6. Persona Validation (Optional)
+### 6. Fact-Check
+**Fact-Checker** verifies all factual claims in the revised draft:
+- Validates statistics, quotes, dates, and named sources against the research pack
+- Fetches and spot-checks 3–5 key sources directly
+- Flags inaccurate, misrepresented, or unsupported claims
+- Outputs `fact_check.md`; corrections produce next vN.md before proceeding
+
+### 7. Persona Validation (Optional)
 **Persona Reviewer** evaluates from 2-4 audience perspectives:
 - Tests how different stakeholders receive the article
 - Surfaces assumptions and blind spots
@@ -80,13 +88,13 @@ User adds a file to `/library` → Archivist and Stylist update the Index and St
 
 **Ghostwriter** may revise based on persona feedback if major issues surface
 
-### 7. Final Pass
+### 8. Final Pass
 **Editor** applies final polish:
 - 15% brevity reduction target
 - Grammar and mechanical perfection
 - Style alignment with `personal-voice`
 
-### 8. Distribution (Optional)
+### 9. Distribution (Optional)
 **Social Media Writer** generates announcement posts:
 - LinkedIn post (150–250 words, primary + alternate)
 - X/Twitter post (280 chars, single post + thread option)
@@ -111,6 +119,7 @@ User adds a file to `/library` → Archivist and Stylist update the Index and St
 │       ├── v1.md
 │       ├── critique.md
 │       ├── v2.md
+│       ├── fact_check.md
 │       ├── vN.md         # Additional versions as revisions accumulate
 │       ├── FINAL.md      # Always the current best version (see versioning protocol)
 │       └── social_posts.md  # Platform-specific announcement posts (optional)
@@ -150,9 +159,10 @@ Then follow the pipeline:
 5. **Draft**: Invoke Ghostwriter with research, POV, and interview brief → `v1.md`
 6. **Critique**: Invoke Critic to review draft → `critique.md`
 7. **Revise**: Ghostwriter addresses critique → `v2.md`
-8. **Persona Review** (optional): Test with 2-4 audience perspectives → `persona_review_[name].md`
-9. **Polish**: Invoke Editor for final pass → `FINAL.md`
-10. **Distribute** (optional): Invoke Social Media Writer → `social_posts.md`
+8. **Fact-Check**: Invoke Fact-Checker to verify claims → `fact_check.md` (corrections → `v3.md` if needed)
+9. **Persona Review** (optional): Test with 2-4 audience perspectives → `persona_review_[name].md`
+10. **Polish**: Invoke Editor for final pass → `FINAL.md`
+11. **Distribute** (optional): Invoke Social Media Writer → `social_posts.md`
 
 All files for this article stay together in the topic subfolder.
 

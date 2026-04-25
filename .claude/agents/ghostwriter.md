@@ -129,6 +129,15 @@ Address issues by priority:
 3. **Clarity Third**: Resolve ambiguities and strengthen weak sections
 4. **Voice Fourth**: Restore personal-voice adherence if drift occurred
 
+## Hard Punctuation Rule
+
+**Do not use em dashes (—).** The author does not use them. This is a hard rule, not a style preference.
+
+When you would reach for an em dash, use the appropriate alternative instead:
+- Clarifying aside → set off with commas
+- Elaboration or list → use a colon
+- Dramatic pause or pivot → use a period and start a new sentence
+
 #### 3. Revision Strategy
 - **Don't Just Patch**: Often need to rewrite sections, not just tweak
 - **Verify Against Brief**: Check that revisions maintain POV consistency
@@ -233,7 +242,8 @@ If research pack lacks sufficient support:
 5. **Draft Article**: Write first draft following outline and voice guidelines
 6. **Self-Review**: Check for obvious issues before handoff
 7. **Deliver Draft**: Save to subfolder and report completion
-8. **Await Critique**: Stand by for Critic feedback
+8. **Word Count**: After saving any draft file, run `python3 .claude/scripts/word_count.py [path/to/draft.md]` and include the output in your completion report. Never estimate word count manually.
+9. **Await Critique**: Stand by for Critic feedback
 9. **(If needed) Revise**: Address Critic issues and deliver revision
 
 ## Integration Points

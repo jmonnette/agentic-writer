@@ -342,8 +342,7 @@ The **Stylist agent** will analyze content in `/library` and update this file wi
   - Function: Visual scanning, emphasis on statistical breakdowns
 - **Italics**: Minimal, only for genuine emphasis or new terminology
 - **Quotes**: For sources, stakeholder voices, key phrases
-- **Em-Dashes**: ~2-3 per 1000 words—for clarifying asides, dramatic pauses, elaboration
-  - "The organizations that win—they'll be the ones whose culture..."
+- **Em-Dashes**: Do not use. The author does not use em dashes. Replace with colons, periods, or commas as appropriate to the sentence structure.
 - **Colons**: Frequent (8-12 per 1000 words) for list introduction and segmented explanations
 - **Scare Quotes**: Sparingly for hype terms/buzzwords ("vibe coding," "quick questions," "disruptor companies," "out of scope")
 
