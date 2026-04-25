@@ -3,29 +3,10 @@
 
 import re
 import sys
-import os
-import glob
 from pathlib import Path
+from draft_utils import resolve_draft_file
 
 WORDS_PER_MINUTE = 238
-
-
-def find_latest_draft(root: Path) -> Path | None:
-    drafts = root / "drafts"
-    if not drafts.exists():
-        return None
-    # Prefer FINAL.md, then highest vN.md, across all draft subfolders sorted newest first
-    candidates = []
-    for folder in sorted(drafts.iterdir(), reverse=True):
-        if not folder.is_dir():
-            continue
-        final = folder / "FINAL.md"
-        if final.exists():
-            return final
-        versions = sorted(folder.glob("v*.md"), key=lambda p: int(re.search(r"\d+", p.stem).group()), reverse=True)
-        if versions:
-            candidates.append(versions[0])
-    return candidates[0] if candidates else None
 
 
 def count(text: str) -> dict:
@@ -87,7 +68,7 @@ def format_report(path: Path, stats: dict, target: int | None = None) -> str:
 def main():
     args = sys.argv[1:]
     target = None
-    file_arg = None
+    file_args = []
 
     for arg in args:
         if arg.startswith("--target="):
@@ -95,19 +76,9 @@ def main():
         elif arg.startswith("-t"):
             target = int(arg[2:])
         else:
-            file_arg = arg
+            file_args.append(arg)
 
-    root = Path(__file__).parent.parent.parent  # agentic_writer root
-
-    if file_arg:
-        path = Path(file_arg)
-        if not path.is_absolute():
-            path = root / path
-    else:
-        path = find_latest_draft(root)
-        if path is None:
-            print("No draft files found under /drafts/", file=sys.stderr)
-            sys.exit(1)
+    path = resolve_draft_file(file_args)
 
     if not path.exists():
         print(f"File not found: {path}", file=sys.stderr)
