@@ -1,8 +1,8 @@
 # Research Index
 
-**Last Updated**: 2026-04-08
+**Last Updated**: 2026-04-11
 **Maintained By**: Archivist Agent
-**Total Entries**: 3
+**Total Entries**: 4
 
 ---
 
@@ -24,6 +24,57 @@ This is a living index of all `research_pack.md` files produced by the Researche
 ---
 
 ## Entries
+
+---
+
+## Building an Agentic Writing Pipeline Using Claude Code
+**Research Pack**: `drafts/agentic_writer_20260411/research_pack.md`
+**Date Researched**: 2026-04-11
+**Article Draft**: `drafts/agentic_writer_20260411/`
+**Search Queries**: 9
+**Sources Evaluated**: 40+
+
+### Topic Summary
+How a non-developer knowledge worker can build a sophisticated multi-agent workflow using Claude Code's conversational configuration model — without coding expertise. Covers the competitive landscape of developer-first frameworks (LangGraph, CrewAI, AutoGen), Claude Code's text-first configuration primitives (CLAUDE.md, sub-agents, skills, plugins, MCP, hooks), the no-code/low-code AI agent market trend, and the absence of comparable published first-person accounts of non-developers building similar systems. Core argument: the barrier to building agentic systems is architectural, not just technical — and Claude Code's markdown-based configuration model is structurally different from all major alternatives.
+
+### Key Findings
+- **LangGraph**: Steep learning curve; requires understanding of DAG semantics, state propagation, graph design. Enterprise/compliance focused. Not accessible to non-developers.
+- **AutoGen (Microsoft Research)**: Requires advanced Python skills. AutoGen Studio provides a UI layer for prototyping, but production use requires Python.
+- **CrewAI**: Python-only (3.10–3.13 required). Most accessible of the three frameworks, but "accessible" still means Python installation and developer workflow. Non-technical teams cannot use it without Python developers.
+- **Claude Code configuration model**: CLAUDE.md (persistent memory, natural language), sub-agents (markdown files with YAML frontmatter + prose system prompt), skills (SKILL.md procedural instruction files), plugins (bundled collections installable via single command), MCP (.mcp.json connection config), hooks (event-triggered scripts). All text-first, not code-first.
+- **AI agents market**: $7.63 billion in 2025; projected $182.97 billion by 2033 at 49.6% CAGR (Grand View Research). No-code/low-code platforms cited as primary adoption accelerant.
+- **Developer adoption gap**: 52% of professional developers either don't use agents or use simpler tools; 38% have no plans to adopt (Stack Overflow Dev Survey, Dec 2025). Even technical users find agents non-trivial.
+- **No comparable public examples**: No published first-person account of a non-developer building a full multi-agent pipeline conversationally with Claude Code. The subject's 11-agent system is a genuinely novel documented case study.
+- **FreeCodeCamp (Claude Code Handbook, 2026)**: "The ability to build software is becoming accessible to a broader range of people — not because the underlying complexity has been eliminated, but because much of the mechanical translation between intent and implementation can now be delegated to an AI agent."
+- **Copilot Studio accessibility ceiling**: Microsoft's no-code agent tool is best for templated tasks; $200/month per tenant. Genuine multi-agent pipeline customization is beyond its current capability for non-developers.
+
+### Primary Areas Covered
+Multi-agent framework comparison, Claude Code configuration primitives, AI agent market data, no-code/low-code adoption trend, knowledge worker adoption barriers, comparable public examples survey
+
+### Key Sources
+- Grand View Research — AI Agents Market Report (2025)
+- Stack Overflow Developer Survey (December 2025)
+- Latenode Blog — LangGraph vs AutoGen vs CrewAI comparison (2025)
+- DataCamp — Multi-agent framework comparison (2025)
+- MindStudio — MindStudio vs CrewAI accessibility comparison (2025)
+- Anthropic — Claude Code sub-agents, skills, plugins official docs (2025–2026)
+- HumanLayer Blog — Writing a good CLAUDE.md (2025)
+- FreeCodeCamp — Claude Code Handbook (2026)
+- Salesmate — AI agent trends for 2026
+- Forbes — Microsoft's Agent Stack Confuses Developers (April 2026)
+- McKinsey — Superagency in the Workplace (January 2025)
+
+### Counterarguments Documented
+- Initial terminal/CLI setup still requires some comfort beyond a typical GUI user
+- Claude Code is Claude-specific (model lock-in), unlike framework alternatives
+- No-code tools (Zapier, Copilot Studio) are expanding — accessibility window may narrow
+- No published usability data comparing Claude Code vs. CrewAI for non-developer users
+
+### Cross-References
+- **Prior Research**: `drafts/ai_champions_guild_20260403/research_pack.md` — AI adoption barriers and McKinsey "employees are ready, leadership is the barrier" framing is relevant context for the accessibility argument.
+
+### Tags
+`#claude-code` `#multi-agent` `#agentic-workflow` `#CLAUDE.md` `#sub-agents` `#skills` `#plugins` `#mcp` `#no-code` `#low-code` `#knowledge-workers` `#non-developer` `#crewai` `#langgraph` `#autogen` `#ai-agents-market` `#accessibility` `#personal-productivity` `#writing-pipeline` `#conversational-configuration` `#anthropic`
 
 ---
 

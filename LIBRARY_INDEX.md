@@ -1,8 +1,8 @@
 # Library Index
 
-**Last Updated**: 2026-04-11
+**Last Updated**: 2026-04-24
 **Maintained By**: Archivist Agent
-**Total Entries**: 13
+**Total Entries**: 15
 
 ---
 
@@ -51,12 +51,13 @@ This is a living semantic index of all content in the `/library` directory. The 
 - AI Adoption & Culture: 8 articles
 - Organizational transformation: 7 articles
 - Developer productivity & roles: 6 articles
-- Metrics & measurement: 4 articles
+- Metrics & measurement: 5 articles
 - AI technical capabilities: 5 articles
 - Economic & labor market impact: 3 articles
 - Legacy systems & modernization: 1 article
 - Testing & quality: 1 article
 - Predictive AI / mid-market ML: 1 article
+- AI-assisted writing / authorship: 1 article
 
 ---
 
@@ -681,11 +682,105 @@ This article argues that the specialist-team barrier to deploying predictive AI 
 
 ---
 
+## AI Helped Write This Article. Does That Make It AI Slop?
+**File**: `library/AI Helped Write This Article. Does That Make It AI Slop?.md`
+**Date Added**: 2026-04-24
+**Published**: 2026-04-19
+**Word Count**: ~900
+**Primary Topic**: AI-Assisted Writing / Authorship
+**Secondary Topics**: Tacit Knowledge, Voice and Authenticity, Human-AI Collaboration, Generative AI as Tool
+
+### Summary
+This essay reframes the "AI slop" critique by distinguishing between two fundamentally different uses of AI in writing: fabrication (AI generating ideas the author does not hold) versus translation (AI articulating ideas the author already knows but struggles to express). Using the author's own experience partnering with Claude to write an article on enterprise software delivery, the piece argues that tacit knowledge — the practitioner's felt-sense of a problem — is the raw material that determines whether AI-assisted writing is genuine or hollow. The test of authentic authorship is not whether AI was involved, but whether the author had something worth saying before the session began.
+
+### Key Stances
+- **On AI Slop**: "AI slop" is real, but the critique is misapplied wholesale. It describes AI generating ideas the author does not hold, in a voice the author has not developed. Not all AI-assisted writing meets that definition.
+- **On AI as Translation vs. Generation**: When the input is lived knowledge and genuine conviction, AI is translating — not fabricating. The output feeling like yours is confirmation the process worked, not a red flag.
+- **On Tacit Knowledge**: Experienced practitioners often have the deepest insights and the hardest time expressing them. The gap between knowing and articulating is real and has always been the hard part of writing. AI can help close that gap.
+- **On Authorship**: Authorship lives in the idea, the argument, the underlying understanding — not in the mechanical act of generating prose. If the conviction was yours before the session, the output is yours.
+- **On the Quality Test**: The test of genuine knowledge is whether it survives challenge. Tacit knowledge survives pushback. Calcified belief — or AI-generated content masquerading as belief — does not.
+- **On Writing as Discovery**: Writing is not recording thoughts already completed; it is the process of discovering what you actually think. AI changes how that discovery process works, but does not negate it when used as a genuine thought partner.
+
+### Key Arguments
+1. **Tacit Knowledge Problem is Real**: Polanyi's concept of tacit knowledge — we know more than we can tell — describes a genuine phenomenon among experienced practitioners. The insight precedes the articulation. AI can help make that knowledge legible to others.
+2. **Fabrication vs. Translation Distinction**: These are not the same request and do not produce the same result. Sitting down with a vague assignment and asking AI to generate something results in slop. Coming with a decade of observations and a specific argument asks for translation.
+3. **Quality Depends on Input**: What makes AI-assisted writing hollow is not the AI. It is the absence of a real point of view before the session begins. The machine fills a vacuum. The quality of the output depends almost entirely on the quality of what was brought to the process.
+4. **Authorship Is Not Mechanical**: The "AI slop" critique, applied wholesale, confuses the tool with the input. A good translation honors the source. A bad translation fails it. The AI is the translator; the author is the source.
+
+### Notable Quotes
+> "Feeling that the words are yours is not a red flag. It is confirmation the process worked."
+
+> "AI slop is real. It exists when AI generates ideas the author does not hold, in a voice the author has not developed, on a topic the author has not thought about. The output is hollow because the input was hollow."
+
+> "Before dismissing something as AI slop, the real question isn't whether AI wrote it. It's whether the author had something worth saying before they started."
+
+> "Come with a decade of observations, a specific argument you've been struggling to articulate clearly, a practitioner's irritation at the way conventional wisdom gets something wrong, and you are not asking for generation. You are asking for translation."
+
+### Related Entries
+- See also: [[Know Your Constraint: Why Vibe Coding Can't Overcome the Enterprise Tax]] (the article used as the worked example in this piece)
+- See also: [[The AI Hype is Dead - Long Live AI]] (AI as augmentation framing)
+
+### Tags
+`#ai-assisted-writing` `#authorship` `#tacit-knowledge` `#ai-as-translation` `#human-ai-collaboration` `#voice-and-authenticity` `#generative-ai` `#writing-process` `#ai-slop` `#michael-polanyi`
+
+---
+
+## The Metric That Actually Matters: Why CTOs Must Speak Dollars, Not Story Points
+**File**: `library/The Metric That Actually Matters: Why CTOs Must Speak Dollars, Not Story Points.md`
+**Date Added**: 2026-04-24
+**Published**: 2026-04-11
+**Word Count**: ~2,800
+**Primary Topic**: Engineering Metrics / Business Value Reporting
+**Secondary Topics**: AI ROI, Story Points, CFO Communication, Measurement Architecture, Backlog Discipline
+
+### Summary
+This article makes a direct, evidence-backed case that story points — an internal sprint planning tool from the late 1990s — have been misappropriated into management dashboards, destroying their signal and leaving engineering leaders unable to justify spending to boards and CFOs. The author argues for replacing upward-facing engineering metrics with three dollar-denominated categories: revenue generated or protected, costs reduced, and retention defended. The piece cites the Faros AI Productivity Paradox, METR research on self-reported productivity, and CFO survey data to establish that the gap between engineering outputs and business outcomes is a measurement architecture problem, not a technology problem. It closes with a concrete implementation path from user story discipline through a dollar-denominated dashboard.
+
+### Key Stances
+- **On Story Points**: Story points are the right unit for internal sprint planning and retrospective calibration. They are the wrong unit for board conversations about engineering value. Misusing them as management KPIs was a leadership failure, not a practitioner failure.
+- **On the AI ROI Crisis**: 56% of CEOs report zero ROI from AI investments. The gap between engineering outputs and business outcomes is a measurement architecture problem. Engineers are shipping more. Dashboards show green. Business hasn't moved. This is a solvable problem — but only if you measure in the right units.
+- **On Dollar Metrics**: Revenue generated or protected, costs reduced, and retention defended — all denominated in dollars — are the only metrics that belong in a boardroom conversation about engineering value. Not because engineering lacks nuance, but because that is the language of enterprise resource allocation.
+- **On Attribution Honesty**: Honest correlation with named assumptions is the standard, not precision. Attribution methods should be explicit, confidence levels stated, and the methodology open to CFO interrogation. "Engineered justification" is not the same as "honest attribution."
+- **On What AI Amplifies**: AI amplifies bad inputs at scale. Accelerating delivery of poorly specified requirements produces polished versions of the wrong things, faster. The solution is upstream: dollar-denominated value hypotheses required in the backlog before a line of code is written.
+- **On Accountability Split**: What to build is a product and business decision. Dollar outcomes of those choices are product/business accountability. How to build it is engineering's domain. Dollar outcomes of build quality are engineering's accountability. Mixing these creates blame where there should be clarity.
+- **On Internal vs. External Metrics**: The multidimensional team-health framework (stakeholder satisfaction, exploration speed, capability range) is for internal use — engineering leaders evaluating team growth. Dollar metrics are the translation layer for business audiences. Both are needed. Confusing the audience for each loses credibility and budget.
+- **On Capacity Recovery**: Efficiency gains from AI tooling get absorbed by scope expansion unless leadership makes a deliberate capture decision: reduce headcount, redeploy to a higher-value initiative, or document scope expansion that would otherwise have required new hires. Without that decision, the gain exists on paper only.
+
+### Key Arguments
+1. **Story Points Were Never Built for This**: Designed as internal planning tools for relative complexity estimation. Promoted into management dashboards during the Agile scaling era in direct contradiction to what Scrum prescribes. Once they became KPIs, teams gamed them. Signal collapsed. The reporting habit stayed.
+2. **Evidence of Output/Outcome Disconnect**: Faros AI (n=10,000+ developers): high-AI-adoption teams completed 21% more tasks and merged 98% more PRs, but no company-level correlation with better outcomes. PR review time up 91%, bug rates up 9%. METR: developers estimated 20% faster with AI tools, actually took 19% longer — a 39-point gap demonstrating that self-reported output metrics are doubly unreliable.
+3. **CFOs Have Already Moved**: Salesforce CFO research (Aug 2025): 61% of CFOs now evaluate AI ROI through cost savings, risk reduction, and revenue growth, not traditional IT metrics. Engineering is still reporting in the wrong language.
+4. **The Dollar Dashboard**: Three columns, all in dollars — revenue generated/protected (with attribution chain and confidence), costs reduced (before/after calculation), retention defended (revenue correlation). Start with one row. Make methodology explicit. This is more useful to a CFO than a velocity trend even if imprecise, because it is in the right unit with a stated methodology she can interrogate.
+5. **Capacity Math That Works in Boards**: Fully-loaded senior engineer: $200–250K/year (Radford/McLagan benchmarks). Across 50 engineers, every 10% recovered capacity = $1–1.25M annually. Present a range with named assumptions (ceiling near $2–2.5M, realistic case materially lower). Don't anchor on the optimistic case.
+6. **Fixing the Input Problem**: Every user story entering the backlog with a dollar-denominated value hypothesis changes the upstream conversation before a line of code is written. Required fields: business objective mapping, value hypothesis (predicted metric change), measurement plan (what data, at what intervals, who owns it). No measurement plan, it doesn't ship.
+7. **Dollar Frame Adapts to Context**: SaaS revenue attribution, manufacturing process cost, clinical workflow throughput, ERP cycle time — the board language is the same regardless of industry. The attribution methodology shifts. The discipline of naming the dollar outcome is the point.
+
+### Notable Quotes
+> "Your CFO doesn't care about story points. Your CEO doesn't care about velocity. Your board doesn't care how many pull requests your team merged last quarter."
+
+> "You cannot translate story points into revenue. The unit conversion doesn't exist."
+
+> "AI amplifies bad inputs at scale. The measurement framework here doesn't just fix the reporting problem. It fixes the input problem."
+
+> "Internal team metrics build the discipline to understand your own value creation; dollar metrics are the translation layer that makes that value visible to the business. You need both. Confusing the audience for each is how engineering leaders lose credibility and budget."
+
+> "Efficiency gains get absorbed by scope expansion unless you make a deliberate decision."
+
+### Related Entries
+- See also: [[Beyond Velocity: Rethinking Metrics for AI-Driven Engineering]] (prior framework on engineering metrics — explicitly acknowledged in this piece as complementary but for internal audiences)
+- See also: [[Know Your Constraint: Why Vibe Coding Can't Overcome the Enterprise Tax]] (enterprise delivery bottlenecks; "garbage in, garbage out at higher velocity" callback)
+- See also: [[The AI Hype is Dead - Long Live AI]] (AI ROI crisis; 6% scaling beyond pilots)
+
+### Tags
+`#engineering-metrics` `#story-points` `#dollar-metrics` `#cto-communication` `#cfo-language` `#ai-roi` `#measurement-architecture` `#backlog-discipline` `#capacity-recovery` `#revenue-attribution` `#boardroom-reporting` `#faros-ai` `#productivity-paradox` `#scrum` `#agile` `#value-hypothesis` `#engineering-accountability`
+
+---
+
 ---
 
 ## Tags Index
 
-`#accountability` `#agentic-development` `#automl` `#automl-platforms` `#agentic-workflows` `#ai-adoption` `#ai-adoption-at-scale` `#ai-agents` `#ai-ambassadors` `#ai-as-augmentation` `#ai-champions` `#ai-coding-tools` `#ai-metrics` `#ai-reverse-engineering` `#ai-risk-management` `#ai-roi` `#ai-strategy` `#ai-unemployment` `#architectural-fitness-functions` `#austrian-economics` `#automation` `#behavioral-change` `#business-logic-extraction` `#caio` `#capability-expansion` `#capital-theory` `#center-of-excellence` `#churn-prediction` `#custom-build-vs-saas` `#change-management` `#chicago-school-economics` `#coaching` `#code-analysis` `#coe` `#collaboration` `#collaborative-networks` `#comparative-advantage` `#competitive-advantage` `#constrained-autonomy` `#contract-driven-development` `#creative-destruction` `#cross-functional-collaboration` `#cto` `#cultural-change` `#cultural-transformation` `#data-infrastructure` `#data-moat` `#data-quality` `#datarobot` `#demand-forecasting` `#developer-mindset` `#developer-productivity` `#design-by-contract` `#dora-metrics` `#drift-monitoring` `#dynamic-pricing` `#economic-impact` `#economic-theory` `#educational-modernization` `#enablement` `#engineering-leadership` `#ensemble-methods` `#enterprise-ai` `#enterprise-software` `#enterprise-tax` `#evolutionary-architecture` `#exploration-speed` `#failure-budgets` `#generalist-vs-specialist` `#generative-ai` `#github-copilot` `#government-failure` `#gradient-boosting` `#growth-mindset` `#h2o-ai` `#human-capital-parity` `#innovation` `#innovation-accounting` `#job-displacement` `#job-guarantee` `#kaizen` `#kaiser-permanente` `#knowledge-preservation` `#labor-market-disruption` `#labor-markets` `#legacy-modernization` `#llm` `#machine-learning` `#market-discovery` `#master-artisan` `#maturity-models` `#mid-market` `#ml-deployment` `#measurement-frameworks` `#non-determinism` `#openai-o1` `#organizational-constraints` `#organizational-culture` `#organizational-structure` `#p-and-l-impact` `#personal-ai` `#pilot-purgatory` `#policy-intervention` `#predictive-ai` `#predictive-maintenance` `#policy-responses` `#post-hype-reality` `#price-signals` `#probabilistic-computing` `#process-improvement` `#prompt-engineering` `#psychological-safety` `#quality-assurance` `#quality-metrics` `#rag` `#real-world-examples` `#risk-reduction` `#role-convergence` `#scientific-mindset` `#shadow-it` `#skill-evolution` `#specification-as-code` `#stakeholder-satisfaction` `#statistical-evaluation` `#t-shaped-professionals` `#talent-markets` `#tax-reform` `#tdd` `#team-capabilities` `#team-structures` `#technical-debt` `#test-driven-development` `#time-series` `#ubi` `#universal-basic-income` `#upskilling` `#value-stream-mapping` `#vsm`
+`#accountability` `#agentic-development` `#agile` `#ai-assisted-writing` `#ai-slop` `#ai-as-translation` `#authorship` `#automl` `#automl-platforms` `#backlog-discipline` `#boardroom-reporting` `#agentic-workflows` `#ai-adoption` `#ai-adoption-at-scale` `#ai-agents` `#ai-ambassadors` `#ai-as-augmentation` `#ai-champions` `#ai-coding-tools` `#ai-metrics` `#ai-reverse-engineering` `#ai-risk-management` `#ai-roi` `#ai-strategy` `#ai-unemployment` `#architectural-fitness-functions` `#austrian-economics` `#automation` `#behavioral-change` `#business-logic-extraction` `#caio` `#capability-expansion` `#capital-theory` `#center-of-excellence` `#churn-prediction` `#custom-build-vs-saas` `#change-management` `#chicago-school-economics` `#coaching` `#code-analysis` `#coe` `#collaboration` `#collaborative-networks` `#comparative-advantage` `#competitive-advantage` `#constrained-autonomy` `#contract-driven-development` `#creative-destruction` `#cross-functional-collaboration` `#capacity-recovery` `#cfo-language` `#cto` `#cto-communication` `#cultural-change` `#cultural-transformation` `#data-infrastructure` `#data-moat` `#dollar-metrics` `#data-quality` `#datarobot` `#demand-forecasting` `#developer-mindset` `#developer-productivity` `#design-by-contract` `#dora-metrics` `#drift-monitoring` `#dynamic-pricing` `#economic-impact` `#economic-theory` `#educational-modernization` `#enablement` `#engineering-accountability` `#engineering-leadership` `#engineering-metrics` `#ensemble-methods` `#enterprise-ai` `#enterprise-software` `#enterprise-tax` `#evolutionary-architecture` `#exploration-speed` `#failure-budgets` `#faros-ai` `#generalist-vs-specialist` `#generative-ai` `#github-copilot` `#government-failure` `#gradient-boosting` `#growth-mindset` `#h2o-ai` `#human-capital-parity` `#innovation` `#innovation-accounting` `#job-displacement` `#job-guarantee` `#kaizen` `#kaiser-permanente` `#knowledge-preservation` `#labor-market-disruption` `#labor-markets` `#legacy-modernization` `#llm` `#machine-learning` `#market-discovery` `#master-artisan` `#maturity-models` `#measurement-architecture` `#michael-polanyi` `#mid-market` `#ml-deployment` `#measurement-frameworks` `#non-determinism` `#openai-o1` `#organizational-constraints` `#organizational-culture` `#organizational-structure` `#p-and-l-impact` `#personal-ai` `#pilot-purgatory` `#policy-intervention` `#predictive-ai` `#predictive-maintenance` `#policy-responses` `#post-hype-reality` `#price-signals` `#productivity-paradox` `#probabilistic-computing` `#process-improvement` `#prompt-engineering` `#psychological-safety` `#quality-assurance` `#quality-metrics` `#rag` `#revenue-attribution` `#real-world-examples` `#risk-reduction` `#role-convergence` `#scientific-mindset` `#scrum` `#shadow-it` `#skill-evolution` `#specification-as-code` `#stakeholder-satisfaction` `#statistical-evaluation` `#story-points` `#t-shaped-professionals` `#tacit-knowledge` `#talent-markets` `#tax-reform` `#tdd` `#team-capabilities` `#team-structures` `#technical-debt` `#test-driven-development` `#time-series` `#ubi` `#universal-basic-income` `#upskilling` `#value-hypothesis` `#value-stream-mapping` `#voice-and-authenticity` `#vsm` `#writing-process`
 
 ---
 
@@ -723,6 +818,10 @@ This article argues that the specialist-team barrier to deploying predictive AI 
 | Data as Competitive Moat | When building predictive AI required large specialist teams, scale was the advantage. That barrier has largely fallen. The moat is now proprietary operational data — years of history competitors cannot purchase, license, or quickly replicate. | [[Predictive AI Is No Longer a Large-Enterprise Game]] | 2026-04-04 |
 | Custom Build vs. SaaS ML | If the problem is standard, buy the SaaS module. If it depends on proprietary operational data unique to the business, a custom build earns its cost. Don't spend custom engineering on solved problems. | [[Predictive AI Is No Longer a Large-Enterprise Game]] | 2026-04-04 |
 | Data Quality as Phase 1 | Treat data remediation as Phase 1 of an AI project — not a prerequisite blocking the start, but the first milestone. It typically consumes 40–60% of total project time. A model trained on bad data produces confident, plausible, incorrect outputs. | [[Predictive AI Is No Longer a Large-Enterprise Game]] | 2026-04-04 |
+| AI-Assisted Writing / AI Slop | "AI slop" is fabrication — AI generating ideas the author does not hold. When the author brings lived knowledge and genuine conviction, AI is translating, not generating. The output feeling like yours is confirmation the process worked, not a red flag. The test of authorship is whether you had something worth saying before you started. | [[AI Helped Write This Article. Does That Make It AI Slop?]] | 2026-04-19 |
+| Story Points vs. Dollar Metrics | Story points belong as internal sprint planning tools — they have no business in a boardroom conversation about engineering value. The only metrics that belong there are denominated in dollars: revenue generated or protected, costs reduced, retention defended. Confusing the audience for internal vs. external metrics loses credibility and budget. | [[The Metric That Actually Matters]] | 2026-04-11 |
+| Engineering Accountability Split | What to build is a product/business decision; dollar outcomes of those choices are product accountability. How to build it is engineering's domain; dollar outcomes of build quality are engineering's accountability. Mixing these creates blame where there should be clarity. | [[The Metric That Actually Matters]] | 2026-04-11 |
+| Capacity Recovery from AI Tools | Efficiency gains from AI tooling get absorbed by scope expansion unless leadership makes a deliberate capture decision. Without that decision, the gain exists on paper only. | [[The Metric That Actually Matters]] | 2026-04-11 |
 
 ---
 
