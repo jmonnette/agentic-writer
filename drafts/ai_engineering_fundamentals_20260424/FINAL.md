@@ -1,4 +1,4 @@
-# Most AI Projects Don't Fail at the Model. They Fail at the Foundation.
+# The Engineering Gap That's Killing Your AI Roadmap
 
 *Co-authored for The Engineer. SME: Jeff Monnette, EPAM Systems, Inc.*
 
@@ -48,7 +48,7 @@ Agentic AI breaks that model entirely.
 
 Agents don't suggest. They act. They call APIs, write to databases, trigger workflows, and spawn sub-agents to complete tasks autonomously. When your integration layer is fragile, a human-in-the-loop system produces bad suggestions. An agentic system produces bad actions. That is a different category of risk.
 
-Deloitte's AI Pulse Check 2025 found that **nearly 60% of AI leaders cite integrating with legacy systems and addressing risk and compliance as their organization's primary challenges in adopting agentic AI**. That finding, troubling in a copilot world, becomes a serious governance problem in an agentic one.
+EPAM's 2025 survey of 7,300 executives and engineers across nine countries found that **74% of advanced AI companies still struggle to deliver value at scale** — and **31% of executives cite outdated technology infrastructure as a direct impediment to AI adoption**. That finding, troubling in a copilot world, becomes a serious governance problem in an agentic one.
 
 Here is what that governance problem looks like in practice. An agent is tasked with updating customer records across three systems: a CRM, an ERP, and a legacy billing platform. It completes the first two calls successfully. On the third, the billing platform's API times out. The agent has no rollback logic. It marks the task complete. The CRM and ERP now reflect the updated record. The billing system does not. A human copilot would have flagged the discrepancy. The agent closed the ticket.
 
@@ -64,11 +64,11 @@ For organizations already running agents in production, the answer is not to res
 
 ## The 5% Who Are Winning Are Not Using Better Models
 
-The companies pulling ahead are not doing so because they selected the right foundation model or hired more data scientists. BCG's "Widening AI Value Gap" report from September 2025 found that **AI leaders achieve 1.7x revenue growth and 3.6x three-year total shareholder return** compared to laggards.
+The companies pulling ahead are not doing so because they selected the right foundation model or hired more data scientists. EPAM's research calls the top tier "Disruptors" — roughly 5% of enterprises — and they attribute **53% of their expected 2025 profits to AI investments**. But here is the telling gap: **only 26% of companies that self-identify as advanced have actually scaled AI use cases to market**. The majority of organizations that believe they are leading are still in the demo phase.
 
 The separating variable is not technology selection. It is execution discipline.
 
-Across the organizations we work with at EPAM that have cracked into the top quartile, the pattern is consistent. Clean, governed, accessible data. Integration layers built for programmatic access, not just human workflows. Clear ownership of AI systems beyond the initial build. Monitoring and observability applied to AI outputs the way they are applied to any production system. BCG's 10-20-70 principle makes the same argument: roughly 10% of the value gap is explained by algorithms and model work, 20% by data and infrastructure, and 70% by people, process, and organizational discipline. The gap is not in the models. It is in the operating model built around them.
+Across the organizations we work with at EPAM that have cracked into the top quartile, the pattern is consistent. Clean, governed, accessible data. Integration layers built for programmatic access, not just human workflows. Clear ownership of AI systems beyond the initial build. Monitoring and observability applied to AI outputs the way they are applied to any production system. A widely-cited industry framework puts the proportions plainly: roughly 10% of the value gap is explained by algorithms and model work, 20% by data and infrastructure, and 70% by people, process, and organizational discipline. The gap is not in the models. It is in the operating model built around them.
 
 This is not sophisticated. It is foundational. The gap between leaders and laggards in AI is, at its core, an engineering maturity gap.
 
@@ -131,9 +131,9 @@ Most organizations cannot answer yes to all three. That is not a readiness gap. 
 - MIT NANDA, "The GenAI Divide: State of AI in Business 2025," July 2025
 - Cloudera + HBR Analytic Services, March 2026
 - Fivetran, Enterprise Data Readiness Report, n=401, 2025
-- Deloitte, AI Pulse Check 2025
+- EPAM Systems, "From Hype to Impact: How Enterprises Can Unlock Real Business Value with AI," April 2025; n=7,300 executives and engineers across nine countries
 - Gartner press releases, August 2025 and June 2025
-- BCG, "The Widening AI Value Gap," September 2025; BCG 10-20-70 principle
+- EPAM Systems, "From Hype to Impact: How Enterprises Can Unlock Real Business Value with AI," April 2025; n=7,300 executives and engineers across nine countries
 - Nate Jones, Open Brain (OB1), github.com/NateBJones-Projects/OB1
 
 ---
