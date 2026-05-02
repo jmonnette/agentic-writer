@@ -1,8 +1,8 @@
 # Research Index
 
-**Last Updated**: 2026-04-11
+**Last Updated**: 2026-04-26
 **Maintained By**: Archivist Agent
-**Total Entries**: 4
+**Total Entries**: 5
 
 ---
 
@@ -24,6 +24,91 @@ This is a living index of all `research_pack.md` files produced by the Researche
 ---
 
 ## Entries
+
+---
+
+## Managing Token Costs for AI-Driven Software Development (SDLC)
+**Research Pack**: `drafts/tokenomics_20260429/research_pack.md`
+**Date Researched**: 2026-04-26
+**Last Supplemented**: 2026-04-26 (Section 8: MCP Tool Token Optimization added)
+**Article Draft**: `drafts/tokenomics_20260429/`
+**Search Queries**: 18 (original) + 10 (MCP supplement)
+**Sources Evaluated**: 60+ (original) + 24 (MCP supplement) = 84+ total
+
+### Topic Summary
+Comprehensive coverage of the AI coding tool pricing landscape and cost-management strategies for engineering teams. Covers eight angles: (1) pricing models for Claude Code, GitHub Copilot, Cursor, and Windsurf; (2) local open-source coding models (Qwen2.5-Coder, DeepSeek Coder, CodeLlama); (3) self-hosting on Mac Mini M4 Pro / Mac Studio via Ollama, LM Studio, vLLM; (4) model tier selection strategies to maximize usage quotas; (5) Claude Code effort/thinking level tuning and its cost-quality tradeoffs; (6) fine-tuning smaller models on proprietary codebases; (7) context engineering best practices to reduce token waste; and (8) MCP tool token optimization — rtk-ai.app, mcp-compressor, dynamic toolsets, MCP proxies, and the broader schema bloat problem.
+
+### Key Findings
+- **Claude Code pricing**: Pro $20/month; Max 5x $100/month; Max 20x $200/month. API: Sonnet 4.6 at $3/$15/M, Opus 4.7 at $5/$25/M, Haiku 4.5 at $1/$5/M. Prompt cache hits: 90% off base input ($0.50/M). One developer's 8-month API cost: $15,000 — equivalent Max plan cost: $800 (93% savings).
+- **GitHub Copilot pricing shift**: June 1, 2026, moving to usage-based AI Credits. Pro $10/month; Pro+ $39/month; Business $19/user; Enterprise $39/user. GPT-5 mini, GPT-4.1, GPT-4o are "included" models with no premium request cost. Claude Sonnet billed at 0.9x multiplier on auto-select.
+- **Cursor**: Pro $20/month with $20 credit pool. Auto mode is unlimited; manual frontier model selection depletes credits. Credit-based system replaced fixed fast requests in June 2025.
+- **Windsurf**: Pro raised from $15 to $20/month in March 2026 overhaul; Max tier $200/month added. Switched from credits to quota system. Tab autocomplete always unlimited; Cascade (agent) and Chat with premium models consume quota.
+- **Local models**: Qwen2.5-Coder-32B scores 37.2% on LiveCodeBench (vs. GPT-4o 29.2%); competitive with frontier models on standard coding benchmarks. Requires ~18GB VRAM at Q4 quantization. 7B variant runs on gaming laptop.
+- **Apple Silicon performance**: Mac Mini M4 16GB: 28–35 tokens/sec on 7B models. Mac Studio M4 Ultra 192GB: 2–5 tokens/sec on 70B quantized models.
+- **Self-hosting break-even**: Conservative estimate 11 billion tokens/month; premium model estimate 5–10 million tokens/month. Self-hosted 7B on H100: $0.013/1,000 tokens vs. $0.15–0.60 for GPT-4o mini API.
+- **Claude Code effort levels**: Low/Medium/High/Max. Anthropic reduced default from High to Medium March 4, 2026 — reversed April 7 after user backlash. Anthropic: "This was the wrong tradeoff." Setting MAX_THINKING_TOKENS=8000 recommended for routine tasks.
+- **Fine-tuning evidence**: Together AI reports 60% better accuracy, 10–100x lower inference cost for specialized tasks (vendor-published). Practitioner consensus: RAG + CLAUDE.md often achieves similar domain-specificity without retraining overhead. Fine-tuning only recommended for high-volume, stable, well-defined tasks.
+- **Context engineering**: Claude Code uses 5.5x fewer tokens than Cursor for identical tasks (MorphLLM benchmark). 50-tool MCP agent wastes 13,000 tokens on catalog before first message. Claude Code's autocompact buffer reduced from 45K to 33K tokens in early 2026. CLAUDE.md should be under 500 tokens. Semantic prompt engineering can reduce waste by up to 74%.
+- **MCP tool token optimization (Section 8 — added April 26, 2026)**:
+  - RTK (Rust Token Killer / rtk-ai.app): CLI proxy that compresses command output before it reaches the LLM context. 60–90% token savings on CLI-heavy workflows; one practitioner saved 10M tokens (89%) across Claude Code sessions. Mechanism is output compression at the command layer (not schema compression). Community mcp-rtk variant extends this into an 8-stage MCP proxy pipeline.
+  - Atlassian mcp-compressor: Open-source MCP proxy wrapper that replaces full tool schemas with 2 compressed wrapper tools. 70–97% schema token reduction. The official Atlassian MCP server alone consumes ~10,000 tokens for schema; combined multi-server configurations reach 30,000+ tokens.
+  - Scale of the problem: Three connected MCP services can consume 143,000 of a 200,000-token window (72%) before any work begins. CNCF measured a single meeting-summary request consuming 240,600 tokens with 114 tools loaded.
+  - Tool count to token relationship: Approximately linear per tool, but threshold effects matter — context window saturation degrades output quality in a step change, and prompt caching breaks when tool lists are dynamic.
+  - Speakeasy dynamic toolsets: Semantic search + progressive discovery hybrid reduces token usage 96.7–160x vs. static toolsets while maintaining 100% task success rate.
+  - Six-technique taxonomy: (1) tool output compression (rtk), (2) schema compression (mcp-compressor), (3) dynamic tool loading / semantic discovery (Speakeasy), (4) MCP gateway proxies (Bifrost), (5) code execution mode (98.7% reduction per Anthropic; 53% per Red Hat), (6) response field filtering (StackOne).
+  - SEP-1576: Huawei engineers proposed a protocol-level fix to MCP schema redundancy in September 2025; proposal is in draft, not yet ratified.
+  - RTK reliability caveat: Practitioner reports on r/ClaudeCode confirm it can interfere with multi-turn agentic sessions. Most reliable for read-heavy, single-command operations.
+- **Global AI API spend**: $8.4 billion in 2025 (doubled from prior year); 72% of companies plan to increase LLM spending.
+
+### Primary Areas Covered
+Claude Code pricing and plans, GitHub Copilot usage-based billing transition, Cursor credit system, Windsurf quota system, Qwen2.5-Coder benchmarks, DeepSeek Coder, Apple Silicon LLM performance, Ollama/vLLM/LM Studio, self-hosting cost breakeven, Claude Code effort levels, April 2026 effort-level incident, fine-tuning vs. RAG, CLAUDE.md and .cursorrules, context compaction, token waste patterns, MCP tool schema bloat, RTK CLI proxy, mcp-compressor, dynamic toolsets, MCP proxies, code execution mode, response field filtering, SEP-1576
+
+### Key Sources
+- Anthropic — Claude Code Pricing, Effort, Costs, Best Practices, Compaction docs (2026)
+- Anthropic Engineering Blog — April 23, 2026 postmortem on effort level reduction
+- GitHub Docs — Copilot plans, requests billing, models and pricing (2026)
+- GitHub Blog — Usage-based billing announcement (2026)
+- NxCode, Vantage, eesel AI — Cursor pricing analysis (2026)
+- CheckThat, Verdent, Flexprice, TokenMix — Windsurf pricing analysis (2026)
+- UCStrategies — Qwen2.5-Coder benchmarks and hardware requirements (2026)
+- Hui et al. — Qwen2.5-Coder Technical Report, ArXiv 2409.12186 (2024)
+- Like2Byte — Mac Mini M4 local LLM benchmarks (2026)
+- SitePoint — Self-Hosted LLM Costs 2026
+- BrainCuber — Self-hosted vs API break-even analysis (2026)
+- Together AI — Fine-tuning small LLMs case study (2025)
+- ArXiv 2602.20478 — Codified Context: Infrastructure for AI Agents (2025)
+- MorphLLM — Context engineering token efficiency analysis (2026)
+- CostLayer — Semantic prompt engineering reduces waste 74% (2026)
+- Faros AI — Claude Code token limits guide (2026)
+- Fortune, The Register — Claude Code effort level coverage (April 2026)
+- rtk-ai.app / github.com/rtk-ai/rtk — RTK Rust Token Killer CLI proxy (2025–2026)
+- ThomasTartrau/mcp-rtk — MCP proxy with 8-stage filter pipeline (2026)
+- Atlassian Labs / github.com/atlassian-labs/mcp-compressor — mcp-compressor (2025–2026)
+- Speakeasy — Dynamic toolsets: 96.7–160x token reduction benchmarks (2026)
+- StackOne — MCP token optimization 4-approach comparison (2026)
+- getmaxim.ai — Bifrost MCP gateway; 92% multi-tool reduction (2026)
+- Fazm.ai — MCP tool token overhead measurement (March 2026)
+- Red Hat Engineering — Sandboxed Python MCP study, 53% reduction (April 2026)
+- CNCF — 114-tool MCP 240,600 token measurement (October 2025)
+- Huawei / SEP-1576 — MCP schema bloat protocol proposal (September 2025)
+- Kilo Code community — RTK 10M token savings practitioner report (2026)
+- Reddit r/ClaudeCode — RTK reliability caveats in multi-turn sessions (2026)
+
+### Counterarguments Documented
+- Self-hosting operational complexity not captured in pure token cost comparisons
+- Max plan rolling 5-hour limits can still wall off heavy users mid-session
+- Fine-tuned models degrade as codebases evolve; retraining is ongoing commitment
+- Context engineering has limits; complex reasoning genuinely benefits from higher effort regardless of context quality
+- 5.5x Claude Code vs. Cursor token efficiency claim originates from MorphLLM (commercial interest; methodology undocumented)
+- Local model throughput wall: 2–5 tok/s on 70B is inadequate for interactive use
+- RTK can interfere with multi-turn agentic sessions; not reliable for complex chained workflows
+- Dynamic toolset discovery requires high-quality tool embeddings; poorly described tools cause task failures
+
+### Cross-References
+- **Prior Research**: `drafts/genai_engineering_value_20260408/research_pack.md` — GitHub Copilot break-even (2 hours saved/week), $200–250K fully-loaded engineer cost, and AI productivity paradox data are directly relevant background for the article's business case framing.
+
+### Tags
+`#token-cost` `#ai-coding-tools` `#claude-code` `#github-copilot` `#cursor` `#windsurf` `#pricing` `#local-llm` `#ollama` `#vllm` `#lm-studio` `#qwen2.5-coder` `#deepseek-coder` `#apple-silicon` `#mac-mini-m4` `#mac-studio` `#self-hosting` `#fine-tuning` `#lora` `#rag` `#context-engineering` `#CLAUDE.md` `#cursorrules` `#compaction` `#token-waste` `#effort-levels` `#thinking-tokens` `#model-selection` `#cost-optimization` `#sdlc` `#engineering-leadership` `#usage-based-billing` `#ai-credits` `#subscription-tiers` `#mcp` `#mcp-token-bloat` `#rtk` `#rust-token-killer` `#mcp-compressor` `#dynamic-toolsets` `#schema-compression` `#tool-response-compression` `#mcp-proxy` `#bifrost` `#speakeasy` `#stackone` `#code-execution-mode` `#sep-1576` `#tool-discovery` `#semantic-search` `#progressive-discovery`
 
 ---
 

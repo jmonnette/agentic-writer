@@ -31,6 +31,13 @@ A running backlog of article ideas. Each topic tracks status, a working angle, a
 
 ## In Progress
 
+### Tokenomics: The Hidden Cost Layer in Enterprise AI
+**Angle**: TBD — to be developed in interview phase
+**Audience**: TBD
+**Draft**: `drafts/tokenomics_20260429/`
+**Started**: 2026-04-29
+**Status**: In Progress
+
 ### The Missing Variable: Why Amit Soni's Value Creation Equation Needs a Growth Mindset Term
 **Angle**: Soni's equation — Exponential Growth = (Talent Density × AI Leverage) ^ Learning Velocity — is rigorous and useful, but Learning Velocity is treated as a measurement, not a precondition. The missing ingredient: psychological safety and tolerance for failure are what *enable* learning velocity in the first place. Without a growth mindset culture and structured space to experiment and fail, the exponent collapses to 1.0 no matter how good your talent or AI tools. This article proposes an amended framework: Learning Velocity = (Experiment Rate × Failure Tolerance) / Fear of Judgment.
 **Audience**: PE operating partners, portfolio company leaders, and technology executives who have read or follow Soni's work; practitioners building AI-native organizations
