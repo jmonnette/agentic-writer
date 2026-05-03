@@ -51,6 +51,9 @@ cat > TOPICS.md << 'EOF'
 ## Published
 EOF
 
+# Create active draft pointer (empty until user runs /switch)
+touch .current_draft
+
 # Create personal-voice skill stub
 cat > .claude/skills/personal-voice/skill.md << 'EOF'
 # Personal Voice Skill
