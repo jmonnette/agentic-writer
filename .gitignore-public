@@ -7,6 +7,9 @@ library/
 external_library/
 drafts/
 
+# Active draft pointer (contains private draft folder names)
+.current_draft
+
 # Personal data files
 LIBRARY_INDEX.md
 RESEARCH_INDEX.md
