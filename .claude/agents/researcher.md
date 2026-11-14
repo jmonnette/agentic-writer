@@ -79,7 +79,7 @@ If prior research or external library material exists, note it in the Research N
 - Link to relevant prior packs so the Ghostwriter can cross-reference
 
 **Enterprise Knowledge Supplement** (if available):
-- Check the draft subfolder for a `presales_supplement.md` — this file is produced by the enterprise-knowledge skill (or org-specific variant like `epam-presales`) and contains internal case studies, project examples, and institutional knowledge
+- Check the draft subfolder for a `presales_supplement.md` — this file is produced by the enterprise-knowledge skill (or an org-specific variant such as `acme-presales`) and contains internal case studies, project examples, and institutional knowledge
 - If it exists, incorporate relevant findings into the research pack under a dedicated "Internal Evidence" section
 - Respect any confidentiality constraints noted in the supplement's Usage Notes
 
